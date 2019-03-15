@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import "./Songs.css";
+
 export default class Songs extends Component {
   state = {
     songs: [],
@@ -39,9 +41,9 @@ export default class Songs extends Component {
     });
 
     return (
-      <div>
+      <div id="container">
         <h1>ALL SONGS</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="form-songs">
           <label htmlFor="submit-button">Search By Title: </label>
           <input
             type="text"
@@ -59,9 +61,13 @@ export default class Songs extends Component {
         {!didSearch
           ? songs.map(song => {
               return (
-                <div key={song.id} id="song-item">
+                <div key={song.id} id="song-container">
                   <h3 id="song-title">{song.title}</h3>
-                  <img src={song.img_url} alt="link to song img" />
+                  <img
+                    src={song.img_url}
+                    alt="link to song img"
+                    className="img-song"
+                  />
                   <p># of Favorites</p>
                   <p>Username: </p>
                   <br />
@@ -71,9 +77,13 @@ export default class Songs extends Component {
             })
           : filteredSongs.map(song => {
               return (
-                <div key={song.id} id="song-item">
+                <div key={song.id} id="song-container">
                   <h3 id="song-title">{song.title}</h3>
-                  <img src={song.img_url} alt="link to song img" />
+                  <img
+                    src={song.img_url}
+                    alt="link to song img"
+                    className="img-song"
+                  />
                   <p># of Favorites</p>
                   <p>Username: </p>
                   <br />

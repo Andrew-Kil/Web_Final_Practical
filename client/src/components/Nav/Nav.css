@@ -1,4 +1,20 @@
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+a:hover {
+  background-color: green;
+}
+
 #nav {
   background-color: lightblue;
   height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 20px;
 }

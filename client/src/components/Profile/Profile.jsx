@@ -6,9 +6,12 @@ import "./Profile.css";
 export default class Profile extends Component {
   state = {
     users: "",
-    selectedButton: "posted",
-    postedClassName: "",
-    favoritesClassName: ""
+    posted: "selected",
+    favorites: "",
+    title: "",
+    img_url: "",
+    user_id: "",
+    genre_id: ""
   };
 
   componentDidMount() {
@@ -20,31 +23,45 @@ export default class Profile extends Component {
       .catch(err => console.log(err));
   }
 
-  selectedButton = e => {
-    const { selectedButton } = this.state;
-    console.log(e.target.name);
-    // selectedButton === "posted"
-    //   ? this.setState({ postedClassName: "selected" })
-    //   : this.setState({
-    //       favoritesClassName: "selected",
-    //       selectedButton: "favorites"
-    //     });
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
-    if (e.target.name === "posted-button") {
-      this.setState({
-        postedClassName: "selected",
-        favoritesClassName: ""
-      });
-    } else {
-      this.setState({
-        favoritesClassName: "selected",
-        postedClassName: ""
-      });
-    }
+  selectedButton = e => {
+    console.log(e.target.name);
+
+    e.target.name === "posted-button"
+      ? this.setState({
+          posted: "selected",
+          favorites: ""
+        })
+      : this.setState({
+          favorites: "selected",
+          posted: ""
+        });
+  };
+
+  postSong = e => {
+    e.preventDefault();
+
+    const { title, img_url, user_id, genre_id } = this.state;
+
+    axios
+      .post("/songs", {
+        title: title,
+        img_url: img_url,
+        user_id: user_id,
+        genre_id: genre_id
+      })
+      .catch(err => console.log(err));
+
+    console.log("SUCCESS!");
   };
 
   render() {
-    const { postedClassName, favoritesClassName } = this.state;
+    const { posted, favorites } = this.state;
 
     console.log(this.state);
 
@@ -54,7 +71,7 @@ export default class Profile extends Component {
         <div id="profile-buttons">
           <button
             id="posted-button"
-            className={postedClassName}
+            className={posted}
             onClick={this.selectedButton}
             name="posted-button"
           >
@@ -62,13 +79,39 @@ export default class Profile extends Component {
           </button>
           <button
             id="favorites-button"
-            className={favoritesClassName}
+            className={favorites}
             onClick={this.selectedButton}
             name="favorites-button"
           >
             Favorites
           </button>
         </div>
+
+        {posted ? (
+          <form onSubmit={this.postSong}>
+            <label>
+              {" "}
+              Title
+              <input type="text" name="title" onChange={this.handleChange} />
+            </label>
+            <label>
+              {" "}
+              Image URL
+              <input type="text" name="img_url" onChange={this.handleChange} />
+            </label>
+            <label>
+              {" "}
+              User ID:
+              <input type="text" name="user_id" onChange={this.handleChange} />
+            </label>
+            <label>
+              {" "}
+              Genre ID:
+              <input type="text" name="genre_id" onChange={this.handleChange} />
+            </label>
+            <button type="submit">Submit</button>
+          </form>
+        ) : null}
       </>
     );
   }

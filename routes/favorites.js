@@ -10,8 +10,8 @@ const {
 } = require("../db/queries/favoritesQueries.js");
 
 router.get("/", getAllFavorites);
-router.get("/song/:id", getAllFavoritesForSong);
-router.get("/user/:id", getAllFavoritesForUser);
+// router.get("/song/:id", getAllFavoritesForSong);
+// router.get("/user/:id", getAllFavoritesForUser);
 router.post("/", createFavorite);
 router.delete("/:id", deleteFavorite);
 

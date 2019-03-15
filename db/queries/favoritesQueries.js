@@ -12,9 +12,9 @@ const getAllFavorites = (req, res, next) => {
         .catch(err => next(err));
 };
 
-const getAllFavoritesForSong;
+// const getAllFavoritesForSong;
 
-const getAllFavoritesForUser;
+// const getAllFavoritesForUser;
 
 const createFavorite = (req, res, next) => {
     db.none("INSERT INTO favorites(user_id, song_id) VALUES(${user_id}, ${song_id})",
@@ -44,8 +44,8 @@ const deleteFavorite = (req, res, next) => {
 
 module.exports = {
     getAllFavorites,
-    getAllFavoritesForSong,
-    getAllFavoritesForUser,
+    // getAllFavoritesForSong,
+    // getAllFavoritesForUser,
     createFavorite,
     deleteFavorite
 };

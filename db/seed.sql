@@ -65,21 +65,21 @@ VALUES
 INSERT INTO songs
     (title, img_url, user_id, genre_id)
 VALUES
-    ('song1', 'url1', 1, 1),
-    ('song2', 'url2', 2, 2),
-    ('song3', 'url3', 3, 3),
-    ('song4', 'url4', 4, 4),
-    ('song5', 'url5', 5, 5),
-    ('song6', 'url6', 6, 1),
-    ('song7', 'url7', 7, 2),
-    ('song8', 'url8', 8, 3),
-    ('song9', 'url9', 9, 4),
-    ('song10', 'url10', 10, 5),
-    ('song11', 'url11', 1, 1),
-    ('song12', 'url12', 2, 2),
-    ('song13', 'url13', 3, 3),
-    ('song14', 'url14', 4, 4),
-    ('song15', 'url15', 5, 5);
+    ('song1', 'https://fakeimg.pl/200x100/?retina=1&text=こんにちは&font=noto', 1, 1),
+    ('song2', 'https://fakeimg.pl/350x200/?text=Hello', 2, 2),
+    ('song3', 'https://fakeimg.pl/350x200/?text=Goodbye', 3, 3),
+    ('song4', 'https://fakeimg.pl/350x200/?text=cat', 4, 4),
+    ('song5', 'https://fakeimg.pl/350x200/?text=hawk', 5, 5),
+    ('song6', 'https://fakeimg.pl/350x200/?text=dog', 6, 1),
+    ('song7', 'https://fakeimg.pl/350x200/?text=lion', 7, 2),
+    ('song8', 'https://fakeimg.pl/350x200/?text=tiger', 8, 3),
+    ('song9', 'https://fakeimg.pl/350x200/?text=shark', 9, 4),
+    ('song10', 'https://fakeimg.pl/350x200/?text=whale', 10, 5),
+    ('song11', 'https://fakeimg.pl/350x200/?text=lobster', 1, 1),
+    ('song12', 'urhttps://fakeimg.pl/350x200/?text=cow', 2, 2),
+    ('song13', 'https://fakeimg.pl/350x200/?text=bird', 3, 3),
+    ('song14', 'https://fakeimg.pl/350x200/?text=chicken', 4, 4),
+    ('song15', 'https://fakeimg.pl/350x200/?text=crow', 5, 5);
 
 INSERT INTO favorites
     (user_id, song_id)

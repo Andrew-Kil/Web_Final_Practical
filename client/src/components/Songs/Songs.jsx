@@ -51,7 +51,6 @@ export default class Songs extends Component {
             onChange={this.handleChange}
             value={search}
           />
-          <br />
           <button type="submit" id="submit-button">
             Reset
           </button>
@@ -70,6 +69,7 @@ export default class Songs extends Component {
                   />
                   <p># of Favorites</p>
                   <p>Username: </p>
+                  <button>Add to Favorites</button>
                   <br />
                   <br />
                 </div>
@@ -86,6 +86,7 @@ export default class Songs extends Component {
                   />
                   <p># of Favorites</p>
                   <p>Username: </p>
+                  <button>Add to Favorites</button>
                   <br />
                   <br />
                 </div>

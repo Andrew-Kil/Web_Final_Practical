@@ -26,15 +26,6 @@ const createComment = (req, res, next) => {
         })
         .catch(err => next(err));
 };
-
-// CREATE TABLE COMMENTS
-//     (
-//         id SERIAL PRIMARY KEY,
-//         comment_body TEXT,
-//         user_id INT REFERENCES users(id),
-//         song_id INT REFERENCES songs
-//     )
-
 const updateComment;
 
 const deleteComment = (req, res, next) => {

@@ -65,21 +65,21 @@ VALUES
 INSERT INTO songs
     (title, img_url, user_id, genre_id)
 VALUES
-    ('song1', 'https://fakeimg.pl/200x100/?retina=1&text=こんにちは&font=noto', 1, 1),
-    ('song2', 'https://fakeimg.pl/350x200/?text=Hello', 2, 2),
-    ('song3', 'https://fakeimg.pl/350x200/?text=Goodbye', 3, 3),
-    ('song4', 'https://fakeimg.pl/350x200/?text=cat', 4, 4),
-    ('song5', 'https://fakeimg.pl/350x200/?text=hawk', 5, 5),
-    ('song6', 'https://fakeimg.pl/350x200/?text=dog', 6, 1),
-    ('song7', 'https://fakeimg.pl/350x200/?text=lion', 7, 2),
-    ('song8', 'https://fakeimg.pl/350x200/?text=tiger', 8, 3),
-    ('song9', 'https://fakeimg.pl/350x200/?text=shark', 9, 4),
-    ('song10', 'https://fakeimg.pl/350x200/?text=whale', 10, 5),
-    ('song11', 'https://fakeimg.pl/350x200/?text=lobster', 1, 1),
-    ('song12', 'urhttps://fakeimg.pl/350x200/?text=cow', 2, 2),
-    ('song13', 'https://fakeimg.pl/350x200/?text=bird', 3, 3),
-    ('song14', 'https://fakeimg.pl/350x200/?text=chicken', 4, 4),
-    ('song15', 'https://fakeimg.pl/350x200/?text=crow', 5, 5);
+    ('Hey Jude', 'https://charts-static.billboard.com/img/1968/09/the-beatles-ism-174x174.jpg', 1, 1),
+    ('Eye Of The Tiger', 'https://charts-static.billboard.com/img/1982/06/survivor-yca-106x106.jpg', 2, 2),
+    ('Rolling In The Deep', 'https://charts-static.billboard.com/img/2010/12/adele-hdy-174x174.jpg', 3, 3),
+    ('Lets Get It On', 'https://charts-static.billboard.com/img/1973/07/marvin-gaye-s2l-174x174.jpg', 4, 4),
+    ('Another One Bites The Dust', 'https://charts-static.billboard.com/img/1980/08/queen-m21-174x174.jpg', 5, 5),
+    ('End Of The Road', 'https://charts-static.billboard.com/img/1992/07/boyz-ii-men-iur-174x174.jpg', 6, 1),
+    ('Gold Digger', 'https://charts-static.billboard.com/img/2005/07/kanye-west-irm-106x106.jpg', 7, 2),
+    ('Billie Jean', 'https://charts-static.billboard.com/img/1983/01/michael-jackson-9to-174x174.jpg', 8, 3),
+    ('I Gotta Feeling', 'https://charts-static.billboard.com/img/2009/06/the-black-eyed-peas-b9u-174x174.jpg', 9, 4),
+    ('We Found Love', 'https://charts-static.billboard.com/img/2011/10/rihanna-v3t-174x174.jpg', 10, 5),
+    ('Every Breath You Take', 'https://charts-static.billboard.com/img/1983/06/the-police-yho-106x106.jpg', 1, 1),
+    ('Night Fever', 'https://charts-static.billboard.com/img/1978/02/bee-gees-uc7-174x174.jpg', 2, 2),
+    ('Call Me Maybe', 'https://charts-static.billboard.com/img/2011/10/carly-rae-jepsen-hod-174x174.jpg', 3, 3),
+    ('I Will Always Love You', 'https://charts-static.billboard.com/img/1992/11/whitney-houston-m52-174x174.jpg', 4, 4),
+    ('Let Me Love You', 'https://charts-static.billboard.com/img/2004/10/mario-bu9-106x106.jpg', 5, 5);
 
 INSERT INTO favorites
     (user_id, song_id)

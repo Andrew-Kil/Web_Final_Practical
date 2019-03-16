@@ -1,3 +1,27 @@
 .selected {
   background-color: lightgreen;
 }
+
+#post-song {
+  background-color: lightblue;
+}
+
+#profile-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#posted-button,
+#favorites-button {
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#posted-button:hover,
+#favorites-button:hover {
+  background-color: lightseagreen;
+}

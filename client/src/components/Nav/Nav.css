@@ -27,3 +27,11 @@ a:hover {
   display: flex;
   justify-content: space-around;
 }
+
+#post-song-form {
+  border: 5px solid black;
+  border-radius: 5px;
+  width: 20%;
+  margin-left: 40%;
+  margin-top: 50px;
+}

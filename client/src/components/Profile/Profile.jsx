@@ -30,8 +30,6 @@ export default class Profile extends Component {
   };
 
   selectedButton = e => {
-    console.log(e.target.name);
-
     e.target.name === "posted-button"
       ? this.setState({
           posted: "selected",
@@ -56,8 +54,6 @@ export default class Profile extends Component {
         genre_id: genre_id
       })
       .catch(err => console.log(err));
-
-    console.log("SUCCESS!");
   };
 
   render() {
@@ -88,27 +84,32 @@ export default class Profile extends Component {
         </div>
 
         {posted ? (
-          <form onSubmit={this.postSong}>
+          <form onSubmit={this.postSong} id="post-song-form">
+            <h2 id="post-song">Add New Song</h2>
             <label>
               {" "}
-              Title
+              Title:
               <input type="text" name="title" onChange={this.handleChange} />
             </label>
+            <br />
             <label>
               {" "}
-              Image URL
+              Image URL:
               <input type="text" name="img_url" onChange={this.handleChange} />
             </label>
+            <br />
             <label>
               {" "}
               User ID:
               <input type="text" name="user_id" onChange={this.handleChange} />
             </label>
+            <br />
             <label>
               {" "}
               Genre ID:
               <input type="text" name="genre_id" onChange={this.handleChange} />
             </label>
+            <br />
             <button type="submit">Submit</button>
           </form>
         ) : null}

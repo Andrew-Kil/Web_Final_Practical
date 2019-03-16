@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 import "./Songs.css";
 
@@ -40,6 +41,10 @@ export default class Songs extends Component {
       return song.title.toLowerCase().includes(search.toLowerCase());
     });
 
+    const comment = songs.map(song => {
+      return song.comments;
+    });
+
     return (
       <div id="container">
         <h1>ALL SONGS</h1>
@@ -68,8 +73,24 @@ export default class Songs extends Component {
                     className="img-song"
                   />
                   <p># of Favorites</p>
-                  <p>Username: </p>
+                  <p>
+                    Posted By:{" "}
+                    <NavLink to={`/users/${song.user_id}`}>
+                      {song.username}
+                    </NavLink>
+                  </p>
                   <button>Add to Favorites</button>
+                  <p>Comments:</p>
+                  {song.comments.map((comment, i) => {
+                    return (
+                      <div key={i} id="comment-container">
+                        {comment.comment_body}
+                        <br />
+                        User: {comment.user_id}
+                      </div>
+                    );
+                  })}
+
                   <br />
                   <br />
                 </div>

@@ -18,6 +18,11 @@
   margin: 10px 10px 10px 10px;
 }
 
+#favorites-count {
+  color: darkgreen;
+  font-weight: 700;
+}
+
 .form-songs {
   width: 100vw;
   display: flex;

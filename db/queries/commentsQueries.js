@@ -27,6 +27,7 @@ const createComment = (req, res, next) => {
     })
     .catch(err => next(err));
 };
+
 // const updateComment;
 
 const deleteComment = (req, res, next) => {

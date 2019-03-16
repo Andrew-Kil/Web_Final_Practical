@@ -42,9 +42,9 @@ export default class Profile extends Component {
   };
 
   postSong = e => {
-    e.preventDefault();
-
     const { title, img_url, user_id, genre_id } = this.state;
+
+    e.preventDefault();
 
     axios
       .post("/songs", {

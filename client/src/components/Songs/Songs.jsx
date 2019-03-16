@@ -21,7 +21,13 @@ export default class Songs extends Component {
   }
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value, didSearch: true });
+    const { search } = this.state;
+
+    search
+      ? this.setState({ [e.target.name]: e.target.value, didSearch: true })
+      : this.setState({
+          [e.target.name]: e.target.value
+        });
   };
 
   handleSubmit = e => {
@@ -32,6 +38,22 @@ export default class Songs extends Component {
     });
   };
 
+  handleComment = e => {
+    const { comment_body } = this.state;
+
+    e.preventDefault();
+
+    axios
+      .post("/comments", {
+        comment_body: comment_body,
+        user_id: 1,
+        song_id: 1
+      })
+      .catch(err => console.log(err));
+
+    console.log("HURRAY!");
+  };
+
   render() {
     console.log(this.state);
 
@@ -39,10 +61,6 @@ export default class Songs extends Component {
 
     const filteredSongs = songs.filter(song => {
       return song.title.toLowerCase().includes(search.toLowerCase());
-    });
-
-    const comment = songs.map(song => {
-      return song.comments;
     });
 
     return (
@@ -72,6 +90,51 @@ export default class Songs extends Component {
                     alt="link to song img"
                     className="img-song"
                   />
+                  <p>
+                    Favorited: {""}
+                    <span id="favorites-count">{song.favorites}</span>
+                    {""} times
+                  </p>
+                  <p>
+                    Posted By:{" "}
+                    <NavLink to={`/users/${song.user_id}`}>
+                      {song.username}
+                    </NavLink>
+                  </p>
+                  <button>Add to Favorites</button>
+                  <p>Comments:</p>
+                  {song.comments.map((comment, i) => {
+                    return (
+                      <div key={i} id="comment-container">
+                        {comment.comment_body}
+                        <br />
+                        User: {comment.user_id}
+                      </div>
+                    );
+                  })}
+                  <form onSubmit={this.handleComment}>
+                    <input
+                      type="text"
+                      onChange={this.handleChange}
+                      name="comment_body"
+                    />
+                    <button type="submit">Add Comment</button>
+                  </form>
+
+                  <br />
+                  <br />
+                </div>
+              );
+            })
+          : filteredSongs.map(song => {
+              return (
+                <div key={song.id} id="song-container">
+                  <h3 id="song-title">{song.title}</h3>
+                  <img
+                    src={song.img_url}
+                    alt="link to song img"
+                    className="img-song"
+                  />
                   <p># of Favorites</p>
                   <p>
                     Posted By:{" "}
@@ -90,24 +153,6 @@ export default class Songs extends Component {
                       </div>
                     );
                   })}
-
-                  <br />
-                  <br />
-                </div>
-              );
-            })
-          : filteredSongs.map(song => {
-              return (
-                <div key={song.id} id="song-container">
-                  <h3 id="song-title">{song.title}</h3>
-                  <img
-                    src={song.img_url}
-                    alt="link to song img"
-                    className="img-song"
-                  />
-                  <p># of Favorites</p>
-                  <p>Username: </p>
-                  <button>Add to Favorites</button>
                   <br />
                   <br />
                 </div>

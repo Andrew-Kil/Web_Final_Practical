@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import "./Songs.css";
 
-export default class Songs extends Component {
+export default class SongsByPop extends Component {
   state = {
     songs: [],
     didSearch: false,
@@ -13,7 +13,7 @@ export default class Songs extends Component {
 
   componentDidMount() {
     axios
-      .get("/songs")
+      .get("/songs/bypop")
       .then(res => {
         this.setState({ songs: res.data.data });
       })
@@ -65,7 +65,7 @@ export default class Songs extends Component {
 
     return (
       <div id="container">
-        <h1>ALL SONGS</h1>
+        <h1>ALL SONGS BY POPULARITY</h1>
         <form onSubmit={this.handleSubmit} className="form-songs">
           <label htmlFor="submit-button">Search By Title: </label>
           <input

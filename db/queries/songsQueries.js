@@ -30,7 +30,23 @@ const getAllSongsByPop = (req, res, next) => {
 
 // const getAllSongsForGenre;
 
-// const getAllSongsForUser;
+const getAllSongsForUser = (req, res, next) => {
+  const loggedInUser = 1;
+  // "Your first user should be your sample user - the user that we will automatically be logged-in as."
+  // Since the first user is our sample user and is automatically logged-in, I structured the query to always point to the first user
+  db.any(
+    "SELECT songs.*, genres.genre_name, users.username, json_agg(comments.*) AS comments, (SELECT count(favorites.song_id) AS favorites FROM favorites WHERE songs.id = favorites.song_id) FROM songs JOIN genres ON songs.genre_id = genres.id JOIN comments ON songs.id = comments.song_id JOIN users ON songs.user_id = users.id  WHERE users.id = $1 GROUP BY songs.id, genres.id, users.username",
+    loggedInUser
+  )
+    .then(data => {
+      res.status(200).json({
+        status: "Success",
+        data: data,
+        messsage: "Received one song"
+      });
+    })
+    .catch(err => next(err));
+};
 
 const getOneSong = (req, res, next) => {
   const id = Number(req.params.id);
@@ -76,7 +92,7 @@ module.exports = {
   getAllSongs,
   getAllSongsByPop,
   // getAllSongsForGenre,
-  // getAllSongsForUser,
+  getAllSongsForUser,
   getOneSong,
   createSong,
   deleteSong

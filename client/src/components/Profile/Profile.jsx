@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 import "./Profile.css";
 
@@ -11,7 +12,8 @@ export default class Profile extends Component {
     title: "",
     img_url: "",
     user_id: "",
-    genre_id: ""
+    genre_id: "",
+    songs: []
   };
 
   componentDidMount() {
@@ -19,6 +21,13 @@ export default class Profile extends Component {
       .get("/users")
       .then(res => {
         this.setState({ users: res.data.data });
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .get("/songs/user")
+      .then(res => {
+        this.setState({ songs: res.data.data });
       })
       .catch(err => console.log(err));
   }
@@ -57,7 +66,7 @@ export default class Profile extends Component {
   };
 
   render() {
-    const { posted, favorites } = this.state;
+    const { posted, favorites, songs } = this.state;
 
     console.log(this.state);
 
@@ -83,36 +92,53 @@ export default class Profile extends Component {
           </button>
         </div>
 
-        {posted ? (
-          <form onSubmit={this.postSong} id="post-song-form">
-            <h2 id="post-song">Add New Song</h2>
-            <label>
-              {" "}
-              Title:
-              <input type="text" name="title" onChange={this.handleChange} />
-            </label>
-            <br />
-            <label>
-              {" "}
-              Image URL:
-              <input type="text" name="img_url" onChange={this.handleChange} />
-            </label>
-            <br />
-            <label>
-              {" "}
-              User ID:
-              <input type="text" name="user_id" onChange={this.handleChange} />
-            </label>
-            <br />
-            <label>
-              {" "}
-              Genre ID:
-              <input type="text" name="genre_id" onChange={this.handleChange} />
-            </label>
-            <br />
-            <button type="submit">Submit</button>
-          </form>
-        ) : null}
+        {posted && songs
+          ? songs.map(song => {
+              return (
+                <div key={song.id} id="song-container">
+                  <h3 id="song-title">{song.title}</h3>
+                  <img
+                    src={song.img_url}
+                    alt="link to song img"
+                    className="img-song"
+                  />
+                  <p>
+                    Favorited: {""}
+                    <span id="favorites-count">{song.favorites}</span>
+                    {""} times
+                  </p>
+                  <p>
+                    Posted By:{" "}
+                    <NavLink to={`/users/${song.user_id}`}>
+                      {song.username}
+                    </NavLink>
+                  </p>
+                  <button>Add to Favorites</button>
+                  <p>Comments:</p>
+                  {song.comments.map((comment, i) => {
+                    return (
+                      <div key={i} id="comment-container">
+                        {comment.comment_body}
+                        <br />
+                        User: {comment.user_id}
+                      </div>
+                    );
+                  })}
+                  <form onSubmit={this.handleComment}>
+                    <input
+                      type="text"
+                      onChange={this.handleChange}
+                      name="comment_body"
+                    />
+                    <button type="submit">Add Comment</button>
+                  </form>
+
+                  <br />
+                  <br />
+                </div>
+              );
+            })
+          : null}
       </>
     );
   }

@@ -4,38 +4,45 @@ import { NavLink } from "react-router-dom";
 
 import "./Songs.css";
 
-export default class SongsByPop extends Component {
+export default class SongsByGenre extends Component {
   state = {
     songs: [],
-    didSearch: false,
-    search: ""
+    genres: []
   };
 
   componentDidMount() {
     axios
-      .get("/songs/bypop")
+      .get("/songs")
       .then(res => {
         this.setState({ songs: res.data.data });
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .get("/genres")
+      .then(res => {
+        this.setState({
+          genres: res.data.data
+        });
       })
       .catch(err => console.log(err));
   }
 
   handleChange = e => {
-    const { search } = this.state;
-
-    search
-      ? this.setState({ [e.target.name]: e.target.value, didSearch: true })
-      : this.setState({
-          [e.target.name]: e.target.value
-        });
+    // const { search } = this.state;
+    // search
+    //   ? this.setState({ [e.target.name]: e.target.value, didSearch: true })
+    //   : this.setState({
+    //       [e.target.name]: e.target.value
+    //     });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.setState({
-      didSearch: false,
-      search: ""
-    });
+    // this.setState({
+    //   didSearch: false,
+    //   search: ""
+    // });
   };
 
   handleComment = e => {
@@ -57,30 +64,32 @@ export default class SongsByPop extends Component {
   render() {
     console.log(this.state);
 
-    const { songs, didSearch, search } = this.state;
+    // const { songs, didSearch, search } = this.state;
 
-    const filteredSongs = songs.filter(song => {
-      return song.title.toLowerCase().includes(search.toLowerCase());
-    });
+    // const filteredSongs = songs.filter(song => {
+    //   return song.title.toLowerCase().includes(search.toLowerCase());
+    // });
+
+    const { genres } = this.state;
 
     return (
       <div id="container">
-        <h1>BY POPULARITY</h1>
+        <h1>BY GENRE</h1>
         <form onSubmit={this.handleSubmit} className="form-songs">
           <label htmlFor="submit-button">Search By Title: </label>
-          <input
-            type="text"
-            name="search"
-            onChange={this.handleChange}
-            value={search}
-          />
+          <select>
+            <option value="0" />
+            {genres.map(genre => {
+              return <option>{genre.genre_name}</option>;
+            })}
+          </select>
           <button type="submit" id="submit-button">
             Reset
           </button>
         </form>
         <br />
 
-        {!didSearch
+        {/* {!didSearch
           ? songs.map(song => {
               return (
                 <div key={song.id} id="song-container">
@@ -161,7 +170,7 @@ export default class SongsByPop extends Component {
                   <br />
                 </div>
               );
-            })}
+            })} */}
       </div>
     );
   }

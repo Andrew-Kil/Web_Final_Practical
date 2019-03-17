@@ -5,7 +5,7 @@ const {
   getAllSongs,
   getAllSongsByPop,
   //   getAllSongsForGenre,
-  //   getAllSongsForUser,
+  getAllSongsForUser,
   getOneSong,
   createSong,
   deleteSong
@@ -14,7 +14,7 @@ const {
 router.get("/", getAllSongs);
 router.get("/bypop", getAllSongsByPop);
 // router.get("/genre/:id", getAllSongsForGenre);
-// router.get("/user/:id", getAllSongsForUser);
+router.get("/user", getAllSongsForUser);
 router.get("/:id", getOneSong);
 router.post("/", createSong);
 router.delete("/:id", deleteSong);

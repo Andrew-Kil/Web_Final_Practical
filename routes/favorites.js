@@ -11,7 +11,7 @@ const {
 
 router.get("/", getAllFavorites);
 // router.get("/song/:id", getAllFavoritesForSong);
-// router.get("/user/:id", getAllFavoritesForUser);
+router.get("/user", getAllFavoritesForUser);
 router.post("/", createFavorite);
 router.delete("/:id", deleteFavorite);
 

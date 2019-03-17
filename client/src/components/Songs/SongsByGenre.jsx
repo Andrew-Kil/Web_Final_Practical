@@ -7,7 +7,9 @@ import "./Songs.css";
 export default class SongsByGenre extends Component {
   state = {
     songs: [],
-    genres: []
+    genres: [],
+    didSelect: false,
+    selectedGenre: ""
   };
 
   componentDidMount() {
@@ -29,12 +31,10 @@ export default class SongsByGenre extends Component {
   }
 
   handleChange = e => {
-    // const { search } = this.state;
-    // search
-    //   ? this.setState({ [e.target.name]: e.target.value, didSearch: true })
-    //   : this.setState({
-    //       [e.target.name]: e.target.value
-    //     });
+    this.setState({
+      didSelect: true,
+      selectedGenre: e.target.value
+    });
   };
 
   handleSubmit = e => {
@@ -64,23 +64,25 @@ export default class SongsByGenre extends Component {
   render() {
     console.log(this.state);
 
-    // const { songs, didSearch, search } = this.state;
+    const { genres, didSelect, songs, selectedGenre } = this.state;
 
-    // const filteredSongs = songs.filter(song => {
-    //   return song.title.toLowerCase().includes(search.toLowerCase());
-    // });
-
-    const { genres } = this.state;
+    const filteredSongs = songs.filter(song => {
+      return song.genre_name === selectedGenre;
+    });
 
     return (
       <div id="container">
         <h1>BY GENRE</h1>
         <form onSubmit={this.handleSubmit} className="form-songs">
           <label htmlFor="submit-button">Search By Title: </label>
-          <select>
+          <select onChange={this.handleChange}>
             <option value="0" />
             {genres.map(genre => {
-              return <option>{genre.genre_name}</option>;
+              return (
+                <option key={genre.id} value={genre.genre_name}>
+                  {genre.genre_name}
+                </option>
+              );
             })}
           </select>
           <button type="submit" id="submit-button">
@@ -89,7 +91,7 @@ export default class SongsByGenre extends Component {
         </form>
         <br />
 
-        {/* {!didSearch
+        {!didSelect
           ? songs.map(song => {
               return (
                 <div key={song.id} id="song-container">
@@ -170,7 +172,7 @@ export default class SongsByGenre extends Component {
                   <br />
                 </div>
               );
-            })} */}
+            })}
       </div>
     );
   }

@@ -13,7 +13,8 @@ export default class Profile extends Component {
     img_url: "",
     user_id: "",
     genre_id: "",
-    songs: []
+    songs: [],
+    userFavorites: []
   };
 
   componentDidMount() {
@@ -28,6 +29,13 @@ export default class Profile extends Component {
       .get("/songs/user")
       .then(res => {
         this.setState({ songs: res.data.data });
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .get("/favorites/user")
+      .then(res => {
+        this.setState({ userFavorites: res.data.data });
       })
       .catch(err => console.log(err));
   }
@@ -66,7 +74,7 @@ export default class Profile extends Component {
   };
 
   render() {
-    const { posted, favorites, songs } = this.state;
+    const { posted, favorites, songs, userFavorites } = this.state;
 
     console.log(this.state);
 
@@ -124,6 +132,54 @@ export default class Profile extends Component {
                       </div>
                     );
                   })}
+                  <form onSubmit={this.handleComment}>
+                    <input
+                      type="text"
+                      onChange={this.handleChange}
+                      name="comment_body"
+                    />
+                    <button type="submit">Add Comment</button>
+                  </form>
+
+                  <br />
+                  <br />
+                </div>
+              );
+            })
+          : null}
+
+        {favorites && userFavorites
+          ? userFavorites[0].favorites.map(userFavorite => {
+              return (
+                <div key={userFavorite.id} id="song-container">
+                  <h3 id="song-title">{userFavorite.title}</h3>
+                  <img
+                    src={userFavorite.img_url}
+                    alt="link to song img"
+                    className="img-song"
+                  />
+                  <p>
+                    Favorited: {""}
+                    <span id="favorites-count">{userFavorite.favorites}</span>
+                    {""} times
+                  </p>
+                  <p>
+                    Posted By:{" "}
+                    <NavLink to={`/users/${userFavorite.user_id}`}>
+                      {userFavorite.username}
+                    </NavLink>
+                  </p>
+                  <button>Add to Favorites</button>
+                  <p>Comments:</p>
+                  {/* {userFavorite.comments.map((comment, i) => {
+                    return (
+                      <div key={i} id="comment-container">
+                        {comment.comment_body}
+                        <br />
+                        User: {comment.user_id}
+                      </div>
+                    );
+                  })} */}
                   <form onSubmit={this.handleComment}>
                     <input
                       type="text"

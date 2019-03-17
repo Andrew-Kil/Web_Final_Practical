@@ -59,32 +59,40 @@ VALUES
     ('Hip-Hop'),
     ('Rock'),
     ('Pop'),
-    ('Chill'),
-    ('Electronic');
+    ('Electronic'),
+    ('R&B');
 
 INSERT INTO songs
     (title, img_url, user_id, genre_id)
 VALUES
-    ('Hey Jude', 'https://charts-static.billboard.com/img/1968/09/the-beatles-ism-174x174.jpg', 1, 1),
+    ('Hey Jude', 'https://charts-static.billboard.com/img/1968/09/the-beatles-ism-174x174.jpg', 1, 2),
     ('Eye Of The Tiger', 'https://charts-static.billboard.com/img/1982/06/survivor-yca-106x106.jpg', 2, 2),
     ('Rolling In The Deep', 'https://charts-static.billboard.com/img/2010/12/adele-hdy-174x174.jpg', 3, 3),
-    ('Lets Get It On', 'https://charts-static.billboard.com/img/1973/07/marvin-gaye-s2l-174x174.jpg', 4, 4),
-    ('Another One Bites The Dust', 'https://charts-static.billboard.com/img/1980/08/queen-m21-174x174.jpg', 5, 5),
-    ('End Of The Road', 'https://charts-static.billboard.com/img/1992/07/boyz-ii-men-iur-174x174.jpg', 6, 1),
-    ('Gold Digger', 'https://charts-static.billboard.com/img/2005/07/kanye-west-irm-106x106.jpg', 7, 2),
+    ('Lets Get It On', 'https://charts-static.billboard.com/img/1973/07/marvin-gaye-s2l-174x174.jpg', 4, 5),
+    ('Another One Bites The Dust', 'https://charts-static.billboard.com/img/1980/08/queen-m21-174x174.jpg', 5, 2),
+    ('End Of The Road', 'https://charts-static.billboard.com/img/1992/07/boyz-ii-men-iur-174x174.jpg', 6, 5),
+    ('Gold Digger', 'https://charts-static.billboard.com/img/2005/07/kanye-west-irm-106x106.jpg', 7, 1),
     ('Billie Jean', 'https://charts-static.billboard.com/img/1983/01/michael-jackson-9to-174x174.jpg', 8, 3),
-    ('I Gotta Feeling', 'https://charts-static.billboard.com/img/2009/06/the-black-eyed-peas-b9u-174x174.jpg', 9, 4),
-    ('We Found Love', 'https://charts-static.billboard.com/img/2011/10/rihanna-v3t-174x174.jpg', 10, 5),
-    ('Every Breath You Take', 'https://charts-static.billboard.com/img/1983/06/the-police-yho-106x106.jpg', 1, 1),
-    ('Night Fever', 'https://charts-static.billboard.com/img/1978/02/bee-gees-uc7-174x174.jpg', 2, 2),
+    ('I Gotta Feeling', 'https://charts-static.billboard.com/img/2009/06/the-black-eyed-peas-b9u-174x174.jpg', 9, 3),
+    ('We Found Love', 'https://charts-static.billboard.com/img/2011/10/rihanna-v3t-174x174.jpg', 10, 3),
+    ('Every Breath You Take', 'https://charts-static.billboard.com/img/1983/06/the-police-yho-106x106.jpg', 1, 2),
+    ('Night Fever', 'https://charts-static.billboard.com/img/1978/02/bee-gees-uc7-174x174.jpg', 2, 3),
     ('Call Me Maybe', 'https://charts-static.billboard.com/img/2011/10/carly-rae-jepsen-hod-174x174.jpg', 3, 3),
-    ('I Will Always Love You', 'https://charts-static.billboard.com/img/1992/11/whitney-houston-m52-174x174.jpg', 4, 4),
-    ('Let Me Love You', 'https://charts-static.billboard.com/img/2004/10/mario-bu9-106x106.jpg', 5, 5);
+    ('I Will Always Love You', 'https://charts-static.billboard.com/img/1992/11/whitney-houston-m52-174x174.jpg', 4, 5),
+    ('Let Me Love You', 'https://charts-static.billboard.com/img/2004/10/mario-bu9-106x106.jpg', 5, 5),
+    ('Happy', 'https://charts-static.billboard.com/img/2014/01/pharrell-williams-rbx-174x174.jpg', 7, 3),
+    ('Bohemian Rhapsody', 'https://is3-ssl.mzstatic.com/image/thumb/Music1/v4/35/fb/9c/35fb9ce9-875d-4784-bd09-a7f5af6711f6/source/100x100bb.jpg', 10, 2),
+    ('Stairway to Heaven', 'https://is4-ssl.mzstatic.com/image/thumb/Music1/v4/b0/43/4d/b0434dcd-2cef-1a9d-a35d-486b8dbe2f2c/source/100x100bb.jpg', 9, 2),
+    ('Imagine', 'https://is3-ssl.mzstatic.com/image/thumb/Music4/v4/0b/e0/d5/0be0d532-e4b7-f04a-9636-310374bfde74/source/100x100bb.jpg', 8, 2),
+    ('Lose Yourself', 'https://is5-ssl.mzstatic.com/image/thumb/Music/v4/54/4b/00/544b0075-6ef9-5fb6-8040-0bcd9f0d5766/source/100x100bb.jpg', 7, 1),
+    ('Walking On a Dream', 'https://is2-ssl.mzstatic.com/image/thumb/Music128/v4/fd/0b/ad/fd0bad0e-79d9-d6b5-c0e7-a1df6b7e2a49/05099930976153.rgb.jpg/170x170bb-85.png', 6, 4),
+    ('Fireflies', 'https://is2-ssl.mzstatic.com/image/thumb/Music/5c/bc/1c/mzi.kymnmjfz.jpg/170x170bb-85.png', 5, 4),
+    ('Summer', 'https://is4-ssl.mzstatic.com/image/thumb/Music128/v4/9b/a1/93/9ba1931f-0357-634a-a3f4-5e4021ebd056/859716236469_cover.jpg/170x170bb-85.png', 4, 4);
+
 
 INSERT INTO favorites
     (user_id, song_id)
 VALUES
-    (1, 1),
     (2, 1),
     (3, 1),
     (4, 1),
@@ -109,7 +117,6 @@ VALUES
     (7, 4),
     (8, 4),
     (9, 4),
-    (1, 4),
     (2, 4),
     (3, 4),
     (4, 4),
@@ -133,7 +140,31 @@ VALUES
     (2, 12),
     (3, 13),
     (4, 14),
-    (5, 15);
+    (5, 15),
+    (10, 23),
+    (8, 23),
+    (6, 23),
+    (4, 23),
+    (9, 22),
+    (5, 22),
+    (1, 22),
+    (10, 21),
+    (8, 21),
+    (5, 21),
+    (2, 21),
+    (7, 20),
+    (6, 20),
+    (5, 20),
+    (4, 20),
+    (3, 20),
+    (2, 19),
+    (1, 19),
+    (5, 18),
+    (9, 17),
+    (4, 17),
+    (1, 17),
+    (3, 16),
+    (9, 16);
 
 INSERT INTO comments
     (comment_body, user_id, song_id)
@@ -157,4 +188,12 @@ VALUES
     ('this song changed my life', 7, 4),
     ('this song did not change my life', 8, 10),
     ('this song is awesome', 9, 15),
-    ('first', 10, 1);
+    ('first', 10, 1),
+    ('my ears are bleeding', 3, 16),
+    ('my dog can make better music than this', 10, 17),
+    ('i like this song', 1, 18),
+    ('play this song every morning', 8, 19),
+    ('this song reminds me of summer', 6, 20),
+    ('best song in the world', 1, 21),
+    ('did not like the vocals but the beat was cool', 2, 22),
+    ('would not listen to again', 8, 23);

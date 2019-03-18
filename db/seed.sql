@@ -87,7 +87,16 @@ VALUES
     ('Lose Yourself', 'https://is5-ssl.mzstatic.com/image/thumb/Music/v4/54/4b/00/544b0075-6ef9-5fb6-8040-0bcd9f0d5766/source/100x100bb.jpg', 7, 1),
     ('Walking On a Dream', 'https://is2-ssl.mzstatic.com/image/thumb/Music128/v4/fd/0b/ad/fd0bad0e-79d9-d6b5-c0e7-a1df6b7e2a49/05099930976153.rgb.jpg/170x170bb-85.png', 6, 4),
     ('Fireflies', 'https://is2-ssl.mzstatic.com/image/thumb/Music/5c/bc/1c/mzi.kymnmjfz.jpg/170x170bb-85.png', 5, 4),
-    ('Summer', 'https://is4-ssl.mzstatic.com/image/thumb/Music128/v4/9b/a1/93/9ba1931f-0357-634a-a3f4-5e4021ebd056/859716236469_cover.jpg/170x170bb-85.png', 4, 4);
+    ('Summer', 'https://is4-ssl.mzstatic.com/image/thumb/Music128/v4/9b/a1/93/9ba1931f-0357-634a-a3f4-5e4021ebd056/859716236469_cover.jpg/170x170bb-85.png', 4, 4),
+    ('Rappers Delight', 'https://www.rollingstone.com/wp-content/uploads/2018/06/rs-138246-20121204-2-sugarhill-gang-306x306-1354644718.jpg', 1, 1),
+    ('Juicy', 'https://www.rollingstone.com/wp-content/uploads/2018/06/rs-138252-biggie-306x306-1354650845.jpg', 2, 1),
+    ('C.R.E.A.M.', 'https://www.rollingstone.com/wp-content/uploads/2018/06/rs-138255-wutangclan-306x306-1354651290.jpg', 3, 1),
+    ('They Reminisce Over You', 'https://www.rollingstone.com/wp-content/uploads/2018/06/rs-138256-peterock-306x306-1354651447.jpg', 1, 1),
+    ('Hypnotize', 'https://uclaadmissions.files.wordpress.com/2011/09/picture-2.jpg', 7, 1),
+    ('Strobe', 'https://static.thetoptens.com/img/items/549650.jpg', 4, 5),
+    ('Around the World', 'https://static.thetoptens.com/img/items/585021.jpg', 4, 5),
+    ('Levels', 'https://is1-ssl.mzstatic.com/image/thumb/Music/v4/9c/85/03/9c8503ad-fa65-a696-ee7c-298a1e321ac6/source/100x100bb.jpg', 1, 5),
+    ('Ghosts N Stuff', 'https://is3-ssl.mzstatic.com/image/thumb/Music/v4/af/0e/99/af0e99ef-2086-c1eb-e34b-d8461f75062b/source/100x100bb.jpg', 9, 5);
 
 
 INSERT INTO favorites
@@ -164,7 +173,27 @@ VALUES
     (4, 17),
     (1, 17),
     (3, 16),
-    (9, 16);
+    (9, 16),
+    (2, 17),
+    (4, 17),
+    (5, 17),
+    (8, 17),
+    (9, 17),
+    (10, 17),
+    (2, 18),
+    (1, 19),
+    (2, 19),
+    (8, 19),
+    (9, 19),
+    (10, 19),
+    (10, 20),
+    (1, 22),
+    (1, 23),
+    (9, 23),
+    (10, 24),
+    (1, 25),
+    (4, 25),
+    (8, 25);
 
 INSERT INTO comments
     (comment_body, user_id, song_id)
@@ -196,4 +225,14 @@ VALUES
     ('this song reminds me of summer', 6, 20),
     ('best song in the world', 1, 21),
     ('did not like the vocals but the beat was cool', 2, 22),
-    ('would not listen to again', 8, 23);
+    ('would not listen to again', 8, 23),
+    ('yum i love coffee', 1, 24),
+    ('green eggs and ham', 10, 25),
+    ('i too, enjoy green eggs and ham', 3, 25),
+    ('the first time I heard this song was at my birthday party', 7, 26),
+    ('the first time I heard this song was at the dentist', 2, 27),
+    ('saw this live, it was great', 10, 28),
+    ('this song always gets me pumped', 2, 29),
+    ('great music', 7, 30),
+    ('great song', 2, 31),
+    ('spooky song', 4, 32);

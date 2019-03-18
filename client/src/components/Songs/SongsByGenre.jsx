@@ -69,9 +69,11 @@ export default class SongsByGenre extends Component {
 
     return (
       <div id="container">
-        <h1>BY GENRE</h1>
+        <h1 className="ubuntu-font">BY GENRE</h1>
         <form onSubmit={this.handleSubmit} className="form-songs">
-          <label htmlFor="submit-button">Search By Title: </label>
+          <label htmlFor="submit-button" className="ubuntu-font">
+            Search By Title:{" "}
+          </label>
           <select onChange={this.handleChange}>
             <option value="0" />
             {genres.map(genre => {

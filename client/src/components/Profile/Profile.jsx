@@ -80,7 +80,9 @@ export default class Profile extends Component {
 
     return (
       <div id="container">
-        <h2>{this.state.users ? this.state.users[0].username : null}</h2>
+        <h2 className="ubuntu-font">
+          {this.state.users ? this.state.users[0].username : null}
+        </h2>
         <div id="profile-buttons">
           <button
             id="posted-button"

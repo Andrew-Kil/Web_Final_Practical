@@ -1,22 +1,22 @@
 a {
   text-decoration: none;
-  color: black;
+  color: white;
   font-weight: bold;
 }
 
 a:hover {
-  background-color: #00f281;
-  border-radius: 5px;
+  color: #00f281;
 }
 
 #nav {
-  background-color: #d1d1d1;
+  background-color: #621389;
+  color: white;
   height: 100px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 18px;
-  font-family: "Merriweather", serif;
+  font-size: 20px;
+  font-family: "Ubuntu", sans-serif;
 
   /* position: fixed;
   top: 0;
@@ -30,8 +30,7 @@ a:hover {
 }
 
 #nav-title:hover {
-  background-color: #00f281;
-  border-radius: 5px;
+  color: #00f281;
 }
 
 #nav-links {

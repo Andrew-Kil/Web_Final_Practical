@@ -73,16 +73,18 @@ export default class Songs extends Component {
 
     return (
       <div id="container">
-        <h1>ALL SONGS</h1>
+        <h1 className="ubuntu-font">ALL SONGS</h1>
         <form onSubmit={this.handleSubmit} className="form-songs">
-          <label htmlFor="submit-button">Search By Title: </label>
+          <label htmlFor="submit-button" className="ubuntu-font">
+            Search By Title:{" "}
+          </label>
           <input
             type="text"
             name="search"
             onChange={this.handleChange}
             value={search}
           />
-          <button type="submit" id="submit-button">
+          <button type="submit" id="submit-button" className="ubuntu-font">
             Reset
           </button>
         </form>

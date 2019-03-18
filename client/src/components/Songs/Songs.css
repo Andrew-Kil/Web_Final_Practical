@@ -1,8 +1,12 @@
 #container {
   display: flex;
   justify-content: center;
+  align-content: center;
   flex-wrap: wrap;
-  padding-top: 75px;
+  padding-top: 15px;
+  background-color: #d1d1d1;
+  width: 75%;
+  margin: 0 auto;
 }
 
 #song-container {
@@ -18,7 +22,6 @@
 }
 
 #song-title {
-  font-family: "Ubuntu", sans-serif;
   font-size: 20px;
 }
 
@@ -32,6 +35,15 @@
 #favorites-count {
   color: darkgreen;
   font-weight: 700;
+}
+
+.ubuntu-font {
+  font-family: "Ubuntu", sans-serif;
+  color: darkslategray;
+}
+
+.merriweather-font {
+  font-family: "Merriweather", serif;
 }
 
 .form-songs {

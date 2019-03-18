@@ -65,9 +65,11 @@ export default class SongsByPop extends Component {
 
     return (
       <div id="container">
-        <h1>BY POPULARITY</h1>
+        <h1 className="ubuntu-font">BY POPULARITY</h1>
         <form onSubmit={this.handleSubmit} className="form-songs">
-          <label htmlFor="submit-button">Search By Title: </label>
+          <label htmlFor="submit-button" className="ubuntu-font">
+            Search By Title:{" "}
+          </label>
           <input
             type="text"
             name="search"

@@ -5,7 +5,7 @@ import music from "./music.jpg";
 export default function Home() {
   return (
     <div id="home-homepage">
-      <h1 id="home-header">Earworm Report</h1>
+      <h1 className="ubuntu-font">Earworm Report</h1>
       <img
         src={music}
         alt="music background, headphones"

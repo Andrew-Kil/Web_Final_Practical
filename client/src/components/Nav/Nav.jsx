@@ -7,7 +7,9 @@ export default function Nav() {
   return (
     <div>
       <nav id="nav">
-        <span id="nav-title">Earworm Report</span>
+        <span id="nav-title">
+          <NavLink to="/">Earworm Report</NavLink>
+        </span>
         <div id="nav-links">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/songs">All Songs</NavLink>

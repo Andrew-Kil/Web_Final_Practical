@@ -3,7 +3,10 @@
 }
 
 #post-song {
-  background-color: lightblue;
+  margin-top: 20px;
+  background-color: whitesmoke;
+  width: 100vw;
+  height: 100px;
 }
 
 #profile-buttons {

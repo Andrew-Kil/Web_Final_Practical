@@ -102,6 +102,30 @@ export default class Profile extends Component {
           </button>
         </div>
 
+        <div id="post-song">
+          <form onSubmit={this.postSong}>
+            Add New Song
+            <br />
+            <label>
+              <input
+                placeholder="Title"
+                onChange={this.handleChange}
+                name="addSongTitle"
+              />
+            </label>
+            <br />
+            <label>
+              <input
+                placeholder="Image URL"
+                onChange={this.handleChange}
+                name="addSongURL"
+              />
+            </label>
+            <br />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+
         {posted && songs
           ? songs.map(song => {
               return (

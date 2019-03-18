@@ -12,13 +12,17 @@ export default class Songs extends Component {
   };
 
   componentDidMount() {
+    this.getSongs();
+  }
+
+  getSongs = () => {
     axios
       .get("/songs")
       .then(res => {
         this.setState({ songs: res.data.data });
       })
       .catch(err => console.log(err));
-  }
+  };
 
   handleChange = e => {
     const { search } = this.state;
@@ -50,6 +54,10 @@ export default class Songs extends Component {
         song_id: 1
       })
       .catch(err => console.log(err));
+
+    this.getSongs();
+
+    e.target.reset();
 
     console.log("HURRAY!");
   };

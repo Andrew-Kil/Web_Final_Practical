@@ -48,6 +48,22 @@ const getAllSongsForUser = (req, res, next) => {
     .catch(err => next(err));
 };
 
+const getAllSongsForOtherUser = (req, res, next) => {
+  const userID = Number(req.params.id);
+  db.any(
+    "SELECT songs.*, genres.genre_name, users.username, json_agg(comments.*) AS comments, (SELECT count(favorites.song_id) AS favorites FROM favorites WHERE songs.id = favorites.song_id) FROM songs JOIN genres ON songs.genre_id = genres.id JOIN comments ON songs.id = comments.song_id JOIN users ON songs.user_id = users.id  WHERE users.id = $1 GROUP BY songs.id, genres.id, users.username",
+    userID
+  )
+    .then(data => {
+      res.status(200).json({
+        status: "Success",
+        data: data,
+        messsage: "Received one song"
+      });
+    })
+    .catch(err => next(err));
+};
+
 const getOneSong = (req, res, next) => {
   const id = Number(req.params.id);
   db.any("SELECT * FROM songs WHERE songs.id = $1", id)
@@ -91,6 +107,7 @@ const deleteSong = (req, res, next) => {
 module.exports = {
   getAllSongs,
   getAllSongsByPop,
+  getAllSongsForOtherUser,
   // getAllSongsForGenre,
   getAllSongsForUser,
   getOneSong,

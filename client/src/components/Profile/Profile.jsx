@@ -79,7 +79,7 @@ export default class Profile extends Component {
     console.log(this.state);
 
     return (
-      <>
+      <div id="container">
         <h2>{this.state.users ? this.state.users[0].username : null}</h2>
         <div id="profile-buttons">
           <button
@@ -103,46 +103,50 @@ export default class Profile extends Component {
         {posted && songs
           ? songs.map(song => {
               return (
-                <div key={song.id} id="song-container">
-                  <h3 id="song-title">{song.title}</h3>
-                  <img
-                    src={song.img_url}
-                    alt="link to song img"
-                    className="img-song"
-                  />
-                  <p>
-                    Favorited: {""}
-                    <span id="favorites-count">{song.favorites}</span>
-                    {""} times
-                  </p>
-                  <p>
-                    Posted By:{" "}
-                    <NavLink to={`/users/${song.user_id}`}>
-                      {song.username}
-                    </NavLink>
-                  </p>
-                  <button>Add to Favorites</button>
-                  <p>Comments:</p>
-                  {song.comments.map((comment, i) => {
-                    return (
-                      <div key={i} id="comment-container">
-                        {comment.comment_body}
-                        <br />
-                        User: {comment.user_id}
-                      </div>
-                    );
-                  })}
-                  <form onSubmit={this.handleComment}>
-                    <input
-                      type="text"
-                      onChange={this.handleChange}
-                      name="comment_body"
+                <div key={song.id}>
+                  <div id="song-container">
+                    <h3 id="song-title">{song.title}</h3>
+                    <img
+                      src={song.img_url}
+                      alt="link to song img"
+                      className="img-song"
                     />
-                    <button type="submit">Add Comment</button>
-                  </form>
+                    <p>
+                      Favorited: {""}
+                      <span id="favorites-count">{song.favorites}</span>
+                      {""} times
+                    </p>
+                    <p>
+                      Posted By:{" "}
+                      <NavLink to={`/users/${song.user_id}`}>
+                        {song.username}
+                      </NavLink>
+                    </p>
+                    <button>Add to Favorites</button>
 
-                  <br />
-                  <br />
+                    <form onSubmit={this.handleComment}>
+                      <input
+                        type="text"
+                        onChange={this.handleChange}
+                        name="comment_body"
+                      />
+                      <button type="submit">Add Comment</button>
+                    </form>
+                    <br />
+                    <br />
+                  </div>
+                  <div id="comments-container">
+                    <p>Comments:</p>
+                    {song.comments.map((comment, i) => {
+                      return (
+                        <div key={i} id="comment-container">
+                          {comment.comment_body}
+                          <br />
+                          User: {comment.user_id}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               );
             })
@@ -195,7 +199,7 @@ export default class Profile extends Component {
               );
             })
           : null}
-      </>
+      </div>
     );
   }
 }

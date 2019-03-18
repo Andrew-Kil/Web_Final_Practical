@@ -5,21 +5,33 @@ a {
 }
 
 a:hover {
-  background-color: lightblue;
+  background-color: #00f281;
+  border-radius: 5px;
 }
 
 #nav {
-  background-color: lightgray;
+  background-color: #d1d1d1;
   height: 100px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 16px;
+  font-size: 18px;
+  font-family: "Merriweather", serif;
+
+  /* position: fixed;
+  top: 0;
+  width: 100%; */
 }
 
 #nav-title {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 30px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+#nav-title:hover {
+  background-color: #00f281;
+  border-radius: 5px;
 }
 
 #nav-links {

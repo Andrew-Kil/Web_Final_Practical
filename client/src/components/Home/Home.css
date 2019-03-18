@@ -1,0 +1,10 @@
+body {
+  background-color: #621389;
+}
+
+#music-background {
+  width: 80%;
+  height: 80%;
+  border-radius: 100px;
+  margin-top: 5%;
+}

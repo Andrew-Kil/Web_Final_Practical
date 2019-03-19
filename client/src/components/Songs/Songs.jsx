@@ -205,8 +205,9 @@ export default class Songs extends Component {
                     {song.comments.map((comment, i) => {
                       return (
                         <div key={i} id="comment-container">
-                          {comment.comment_body}
-                          <br />
+                          <span id="comment-text">
+                            "{comment.comment_body}"
+                          </span>
                           <NavLink to={`/profile/${comment.user_id}`}>
                             User: {comment.user_id}
                           </NavLink>

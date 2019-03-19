@@ -15,8 +15,8 @@ const {
 router.get("/", getAllSongs);
 router.get("/bypop", getAllSongsByPop);
 // router.get("/genre/:id", getAllSongsForGenre);
-router.get("/user", getAllSongsForUser);
 router.get("/user/:id", getAllSongsForOtherUser);
+router.get("/user", getAllSongsForUser);
 router.get("/:id", getOneSong);
 router.post("/", createSong);
 router.delete("/:id", deleteSong);

@@ -21,12 +21,12 @@ export default class UserProfile extends Component {
       })
       .catch(err => console.log(err));
 
-    // axios
-    //   .get(`/songs/user/${}`)
-    //   .then(res => {
-    //     this.setState({ songs: res.data.data });
-    //   })
-    //   .catch(err => console.log(err));
+    axios
+      .get(`/songs/user/${this.props.match.params.id}`)
+      .then(res => {
+        this.setState({ songs: res.data.data });
+      })
+      .catch(err => console.log(err));
 
     axios
       .get("/favorites/user")
@@ -59,10 +59,14 @@ export default class UserProfile extends Component {
 
     console.log(this.state);
 
+    console.log(this.props);
+
     return (
       <div id="container">
         <h2 className="ubuntu-font">
-          {this.state.users ? this.state.users[0].username : null}
+          {this.state.users
+            ? this.state.users[this.props.match.params.id - 1].username
+            : null}
         </h2>
         <div id="profile-buttons">
           <button

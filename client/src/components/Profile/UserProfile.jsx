@@ -29,7 +29,7 @@ export default class UserProfile extends Component {
       .catch(err => console.log(err));
 
     axios
-      .get("/favorites/user")
+      .get(`/favorites/user/${this.props.match.params.id}`)
       .then(res => {
         this.setState({ userFavorites: res.data.data });
       })

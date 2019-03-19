@@ -6,22 +6,21 @@ import "./Profile.css";
 
 export default class Profile extends Component {
   state = {
-    users: "",
     posted: "selected",
     favorites: "",
     title: "",
     img_url: "",
-    user_id: "",
-    genre_id: "",
+    selectedGenre: "",
     songs: [],
+    genres: [],
     userFavorites: []
   };
 
   componentDidMount() {
     axios
-      .get("/users")
+      .get("/genres")
       .then(res => {
-        this.setState({ users: res.data.data });
+        this.setState({ genres: res.data.data });
       })
       .catch(err => console.log(err));
 
@@ -59,7 +58,7 @@ export default class Profile extends Component {
   };
 
   postSong = e => {
-    const { title, img_url, user_id, genre_id } = this.state;
+    const { title, img_url, selectedGenre } = this.state;
 
     e.preventDefault();
 
@@ -67,8 +66,9 @@ export default class Profile extends Component {
       .post("/songs", {
         title: title,
         img_url: img_url,
-        user_id: user_id,
-        genre_id: genre_id
+        user_id: "1",
+        // since we will always be logged in as the first user, I specified that the poster will always be that user
+        genre_id: selectedGenre
       })
       .catch(err => console.log(err));
   };
@@ -102,29 +102,43 @@ export default class Profile extends Component {
           </button>
         </div>
 
-        <div id="post-song">
-          <form onSubmit={this.postSong}>
-            Add New Song
-            <br />
-            <label>
-              <input
-                placeholder="Title"
-                onChange={this.handleChange}
-                name="addSongTitle"
-              />
-            </label>
-            <br />
-            <label>
-              <input
-                placeholder="Image URL"
-                onChange={this.handleChange}
-                name="addSongURL"
-              />
-            </label>
-            <br />
-            <button type="submit">Submit</button>
-          </form>
-        </div>
+        {posted ? (
+          <div id="post-song">
+            <form onSubmit={this.postSong}>
+              Add New Song
+              <br />
+              <label>
+                <input
+                  placeholder="Title"
+                  onChange={this.handleChange}
+                  name="title"
+                />
+              </label>
+              <br />
+              <label>
+                <input
+                  placeholder="Image URL"
+                  onChange={this.handleChange}
+                  name="img_url"
+                />
+              </label>
+              <br />
+              <label>
+                <select onChange={this.handleChange} name="selectedGenre">
+                  <option>Pick Genre</option>
+                  {this.state.genres.map(genre => {
+                    return (
+                      <option key={genre.id} value={genre.id}>
+                        {genre.genre_name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </label>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        ) : null}
 
         {posted && songs
           ? songs.map(song => {
@@ -148,7 +162,7 @@ export default class Profile extends Component {
                         {song.username}
                       </NavLink>
                     </p>
-                    <button>Add to Favorites</button>
+                    <button>Favorite</button>
 
                     <form onSubmit={this.handleComment}>
                       <input

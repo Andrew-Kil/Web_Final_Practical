@@ -18,6 +18,13 @@ export default class Profile extends Component {
 
   componentDidMount() {
     axios
+      .get("/users/")
+      .then(res => {
+        this.setState({ users: res.data.data });
+      })
+      .catch(err => console.log(err));
+
+    axios
       .get("/genres")
       .then(res => {
         this.setState({ genres: res.data.data });
@@ -135,6 +142,7 @@ export default class Profile extends Component {
                   })}
                 </select>
               </label>
+              <br />
               <button type="submit">Submit</button>
             </form>
           </div>
@@ -182,7 +190,9 @@ export default class Profile extends Component {
                         <div key={i} id="comment-container">
                           {comment.comment_body}
                           <br />
-                          User: {comment.user_id}
+                          <NavLink to={`/profile/${comment.user_id}`}>
+                            User: {comment.user_id}
+                          </NavLink>
                         </div>
                       );
                     })}

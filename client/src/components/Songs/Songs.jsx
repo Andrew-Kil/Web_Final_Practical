@@ -7,19 +7,41 @@ import "./Songs.css";
 export default class Songs extends Component {
   state = {
     songs: [],
+    users: [],
     didSearch: false,
     search: ""
   };
 
   componentDidMount() {
     this.getSongs();
+    this.getUsers();
   }
+
+  matchUser = ID => {
+    this.state.users.forEach(user => {
+      console.log(typeof user.id);
+      console.log(typeof ID);
+      if (ID === user.id) {
+        console.log(typeof user.username);
+        return <p>user.username</p>;
+      }
+    });
+  };
 
   getSongs = () => {
     axios
       .get("/songs")
       .then(res => {
         this.setState({ songs: res.data.data });
+      })
+      .catch(err => console.log(err));
+  };
+
+  getUsers = () => {
+    axios
+      .get("/users")
+      .then(res => {
+        this.setState({ users: res.data.data });
       })
       .catch(err => console.log(err));
   };
@@ -94,7 +116,7 @@ export default class Songs extends Component {
           ? songs.map(song => {
               return (
                 <div key={song.id}>
-                  <div key={song.id} id="song-container">
+                  <div id="song-container">
                     <h3 id="song-title">{song.title}</h3>
                     <img
                       src={song.img_url}
@@ -108,7 +130,7 @@ export default class Songs extends Component {
                     </p>
                     <p>
                       Posted By:{" "}
-                      <NavLink to={`/users/${song.user_id}`}>
+                      <NavLink to={`/profile/${song.user_id}`}>
                         {song.username}
                       </NavLink>
                     </p>
@@ -133,7 +155,9 @@ export default class Songs extends Component {
                         <div key={i} id="comment-container">
                           {comment.comment_body}
                           <br />
-                          User: {comment.user_id}
+                          <NavLink to={`/profile/${comment.user_id}`}>
+                            User: {comment.user_id}
+                          </NavLink>
                         </div>
                       );
                     })}
@@ -168,7 +192,9 @@ export default class Songs extends Component {
                       <div key={i} id="comment-container">
                         {comment.comment_body}
                         <br />
-                        User: {comment.user_id}
+                        <NavLink to={`/profile/${comment.user_id}`}>
+                          User: {comment.user_id}
+                        </NavLink>
                       </div>
                     );
                   })}

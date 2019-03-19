@@ -93,46 +93,53 @@ export default class SongsByGenre extends Component {
         {!didSelect
           ? songs.map(song => {
               return (
-                <div key={song.id} id="song-container">
-                  <h3 id="song-title">{song.title}</h3>
-                  <img
-                    src={song.img_url}
-                    alt="link to song img"
-                    className="img-song"
-                  />
-                  <p>
-                    Favorited: {""}
-                    <span id="favorites-count">{song.favorites}</span>
-                    {""} times
-                  </p>
-                  <p>
-                    Posted By:{" "}
-                    <NavLink to={`/users/${song.user_id}`}>
-                      {song.username}
-                    </NavLink>
-                  </p>
-                  <button>Add to Favorites</button>
-                  <p>Comments:</p>
-                  {song.comments.map((comment, i) => {
-                    return (
-                      <div key={i} id="comment-container">
-                        {comment.comment_body}
-                        <br />
-                        User: {comment.user_id}
-                      </div>
-                    );
-                  })}
-                  <form onSubmit={this.handleComment}>
-                    <input
-                      type="text"
-                      onChange={this.handleChange}
-                      name="comment_body"
+                <div key={song.id}>
+                  <div id="song-container">
+                    <h3 id="song-title">{song.title}</h3>
+                    <img
+                      src={song.img_url}
+                      alt="link to song img"
+                      className="img-song"
                     />
-                    <button type="submit">Add Comment</button>
-                  </form>
+                    <p>
+                      Favorited: {""}
+                      <span id="favorites-count">{song.favorites}</span>
+                      {""} times
+                    </p>
+                    <p>
+                      Posted By:{" "}
+                      <NavLink to={`/users/${song.user_id}`}>
+                        {song.username}
+                      </NavLink>
+                    </p>
+                    <button>Add to Favorites</button>
 
-                  <br />
-                  <br />
+                    <form onSubmit={this.handleComment}>
+                      <input
+                        type="text"
+                        onChange={this.handleChange}
+                        name="comment_body"
+                      />
+                      <button type="submit">Add Comment</button>
+                    </form>
+
+                    <br />
+                    <br />
+                  </div>
+                  <div id="comments-container">
+                    <p>Comments:</p>
+                    {song.comments.map((comment, i) => {
+                      return (
+                        <div key={i} id="comment-container">
+                          {comment.comment_body}
+                          <br />
+                          <NavLink to={`/profile/${comment.user_id}`}>
+                            User: {comment.user_id}
+                          </NavLink>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               );
             })

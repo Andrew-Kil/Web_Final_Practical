@@ -78,6 +78,7 @@ const getOneSong = (req, res, next) => {
 };
 
 const createSong = (req, res, next) => {
+  // we're having an issue here where this route seems to require a genre. It's not letting you post a new song. You have two options here: You can make genre not required in this query, or you can add a mandatory field to your frontend that adds a genre to the song you're posting.
   db.none(
     "INSERT INTO songs(title, img_url, user_id, genre_id) VALUES(${title}, ${img_url}, ${user_id}, ${genre_id})",
     req.body

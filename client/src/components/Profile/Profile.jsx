@@ -151,52 +151,61 @@ export default class Profile extends Component {
         {posted && songs
           ? songs.map(song => {
               return (
-                <div key={song.id}>
-                  <div id="song-container">
-                    <h3 id="song-title">{song.title}</h3>
+                <div key={song.id} id="master-container">
+                  <span id="image-container">
                     <img
                       src={song.img_url}
                       alt="link to song img"
                       className="img-song"
                     />
-                    <p>
-                      Favorited: {""}
-                      <span id="favorites-count">{song.favorites}</span>
-                      {""} times
-                    </p>
-                    <p>
-                      Posted By:{" "}
-                      <NavLink to={`/users/${song.user_id}`}>
-                        {song.username}
-                      </NavLink>
-                    </p>
-                    <button>Favorite</button>
-
-                    <form onSubmit={this.handleComment}>
-                      <input
-                        type="text"
-                        onChange={this.handleChange}
-                        name="comment_body"
-                      />
-                      <button type="submit">Add Comment</button>
-                    </form>
-                    <br />
-                    <br />
-                  </div>
-                  <div id="comments-container">
-                    <p>Comments:</p>
-                    {song.comments.map((comment, i) => {
-                      return (
-                        <div key={i} id="comment-container">
-                          {comment.comment_body}
-                          <br />
-                          <NavLink to={`/profile/${comment.user_id}`}>
-                            User: {comment.user_id}
-                          </NavLink>
+                  </span>
+                  <span id="song-container">
+                    <div id="info-box">
+                      <h3 id="song-title">{song.title}</h3>
+                      <p>
+                        Posted By:{" "}
+                        <NavLink to={`/profile/${song.user_id}`}>
+                          {song.username}
+                        </NavLink>
+                      </p>
+                      <p id="favorites-title">
+                        <div id="favorites-spacing">
+                          <span id="favorites-count">{song.favorites}</span>{" "}
+                          Favorites
                         </div>
-                      );
-                    })}
-                  </div>
+                        <button id="favorite-button">Favorite</button>
+                      </p>
+                    </div>
+
+                    <div id="comments-container">
+                      {song.comments.map((comment, i) => {
+                        return (
+                          <div key={i} id="comment-container">
+                            <span id="comment-text">
+                              "{comment.comment_body}"
+                            </span>
+                            <NavLink to={`/profile/${comment.user_id}`}>
+                              User: {comment.user_id}
+                            </NavLink>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    <div id="add-comment-form">
+                      <form onSubmit={this.handleComment}>
+                        <input
+                          type="text"
+                          onChange={this.handleChange}
+                          name="comment_body"
+                        />
+                        <button type="submit">Add Comment</button>
+                      </form>
+                    </div>
+
+                    <br />
+                    <br />
+                  </span>
                 </div>
               );
             })
@@ -205,46 +214,63 @@ export default class Profile extends Component {
         {favorites && userFavorites
           ? userFavorites[0].favorites.map(userFavorite => {
               return (
-                <div key={userFavorite.id} id="song-container">
-                  <h3 id="song-title">{userFavorite.title}</h3>
-                  <img
-                    src={userFavorite.img_url}
-                    alt="link to song img"
-                    className="img-song"
-                  />
-                  <p>
-                    Favorited: {""}
-                    <span id="favorites-count">{userFavorite.favorites}</span>
-                    {""} times
-                  </p>
-                  <p>
-                    Posted By:{" "}
-                    <NavLink to={`/users/${userFavorite.user_id}`}>
-                      {userFavorite.username}
-                    </NavLink>
-                  </p>
-                  <button>Add to Favorites</button>
-                  <p>Comments:</p>
-                  {/* {userFavorite.comments.map((comment, i) => {
-                    return (
-                      <div key={i} id="comment-container">
-                        {comment.comment_body}
-                        <br />
-                        User: {comment.user_id}
-                      </div>
-                    );
-                  })} */}
-                  <form onSubmit={this.handleComment}>
-                    <input
-                      type="text"
-                      onChange={this.handleChange}
-                      name="comment_body"
+                <div key={userFavorite.id} id="master-container">
+                  <span id="image-container">
+                    <img
+                      src={userFavorite.img_url}
+                      alt="link to song img"
+                      className="img-song"
                     />
-                    <button type="submit">Add Comment</button>
-                  </form>
+                  </span>
+                  <span id="song-container">
+                    <div id="info-box">
+                      <h3 id="song-title">{userFavorite.title}</h3>
+                      <p>
+                        Posted By:{" "}
+                        <NavLink to={`/profile/${userFavorite.user_id}`}>
+                          {userFavorite.username}
+                        </NavLink>
+                      </p>
+                      <p id="favorites-title">
+                        <div id="favorites-spacing">
+                          <span id="favorites-count">
+                            {userFavorite.favorites}
+                          </span>{" "}
+                          Favorites
+                        </div>
+                        <button id="favorite-button">Favorite</button>
+                      </p>
+                    </div>
 
-                  <br />
-                  <br />
+                    {/* <div id="comments-container">
+              {userFavorite.comments.map((comment, i) => {
+                        return (
+                          <div key={i} id="comment-container">
+                            <span id="comment-text">
+                              "{comment.comment_body}"
+                            </span>
+                            <NavLink to={`/profile/${comment.user_id}`}>
+                              User: {comment.user_id}
+                            </NavLink>
+                          </div>
+                        );
+                      })}
+                    </div> */}
+
+                    <div id="add-comment-form">
+                      <form onSubmit={this.handleComment}>
+                        <input
+                          type="text"
+                          onChange={this.handleChange}
+                          name="comment_body"
+                        />
+                        <button type="submit">Add Comment</button>
+                      </form>
+                    </div>
+
+                    <br />
+                    <br />
+                  </span>
                 </div>
               );
             })

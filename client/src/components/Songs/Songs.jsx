@@ -134,7 +134,7 @@ export default class Songs extends Component {
                       </p>
                       <p id="favorites-title">
                         <div id="favorites-spacing">
-                          <span id="favorites-count">{song.favorites}</span>
+                          <span id="favorites-count">{song.favorites}</span>{" "}
                           Favorites
                         </div>
                         <button id="favorite-button">Favorite</button>
@@ -175,39 +175,47 @@ export default class Songs extends Component {
             })
           : filteredSongs.map(song => {
               return (
-                <div key={song.id} id="song-container">
-                  <h3 id="song-title">{song.title}</h3>
-                  <img
-                    src={song.img_url}
-                    alt="link to song img"
-                    className="img-song"
-                  />
-                  <p>
-                    Favorited: {""}
-                    <span id="favorites-count">{song.favorites}</span>
-                    {""} times
-                  </p>
-                  <p>
-                    Posted By:{" "}
-                    <NavLink to={`/users/${song.user_id}`}>
-                      {song.username}
-                    </NavLink>
-                  </p>
-                  <button>Add to Favorites</button>
-                  <p>Comments:</p>
-                  {song.comments.map((comment, i) => {
-                    return (
-                      <div key={i} id="comment-container">
-                        {comment.comment_body}
-                        <br />
-                        <NavLink to={`/profile/${comment.user_id}`}>
-                          User: {comment.user_id}
+                <div key={song.id} id="master-container">
+                  <span id="image-container">
+                    <img
+                      src={song.img_url}
+                      alt="link to song img"
+                      className="img-song"
+                    />
+                  </span>
+                  <span id="song-container">
+                    <div id="info-box">
+                      <h3 id="song-title">{song.title}</h3>
+
+                      <p>
+                        Posted By:{" "}
+                        <NavLink to={`/profile/${song.user_id}`}>
+                          {song.username}
                         </NavLink>
-                      </div>
-                    );
-                  })}
-                  <br />
-                  <br />
+                      </p>
+                      <p id="favorites-title">
+                        <div id="favorites-spacing">
+                          <span id="favorites-count">{song.favorites}</span>{" "}
+                          Favorites
+                        </div>
+                        <button id="favorite-button">Favorite</button>
+                      </p>
+                    </div>
+
+                    {song.comments.map((comment, i) => {
+                      return (
+                        <div key={i} id="comment-container">
+                          {comment.comment_body}
+                          <br />
+                          <NavLink to={`/profile/${comment.user_id}`}>
+                            User: {comment.user_id}
+                          </NavLink>
+                        </div>
+                      );
+                    })}
+                    <br />
+                    <br />
+                  </span>
                 </div>
               );
             })}

@@ -91,7 +91,7 @@
 }
 
 #favorites-count {
-  color: darkgreen;
+  color: #621389;
   font-weight: 700;
 }
 
@@ -112,6 +112,6 @@
 }
 
 .img-song {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
 }

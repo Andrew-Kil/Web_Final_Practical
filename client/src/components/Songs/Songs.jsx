@@ -126,6 +126,12 @@ export default class Songs extends Component {
                   <span id="song-container">
                     <div id="info-box">
                       <h3 id="song-title">{song.title}</h3>
+                      <p>
+                        Posted By:{" "}
+                        <NavLink to={`/profile/${song.user_id}`}>
+                          {song.username}
+                        </NavLink>
+                      </p>
                       <p id="favorites-title">
                         <div id="favorites-spacing">
                           <span id="favorites-count">{song.favorites}</span>
@@ -134,39 +140,36 @@ export default class Songs extends Component {
                         <button id="favorite-button">Favorite</button>
                       </p>
                     </div>
-                    <p>
-                      Posted By:{" "}
-                      <NavLink to={`/profile/${song.user_id}`}>
-                        {song.username}
-                      </NavLink>
-                    </p>
 
-                    <form onSubmit={this.handleComment}>
-                      <input
-                        type="text"
-                        onChange={this.handleChange}
-                        name="comment_body"
-                      />
-                      <button type="submit">Add Comment</button>
-                    </form>
+                    <div id="comments-container">
+                      {song.comments.map((comment, i) => {
+                        return (
+                          <div key={i} id="comment-container">
+                            <span id="comment-text">
+                              "{comment.comment_body}"
+                            </span>
+                            <NavLink to={`/profile/${comment.user_id}`}>
+                              User: {comment.user_id}
+                            </NavLink>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    <div id="add-comment-form">
+                      <form onSubmit={this.handleComment}>
+                        <input
+                          type="text"
+                          onChange={this.handleChange}
+                          name="comment_body"
+                        />
+                        <button type="submit">Add Comment</button>
+                      </form>
+                    </div>
 
                     <br />
                     <br />
                   </span>
-                  <div id="comments-container">
-                    <p>Comments:</p>
-                    {song.comments.map((comment, i) => {
-                      return (
-                        <div key={i} id="comment-container">
-                          {comment.comment_body}
-                          <br />
-                          <NavLink to={`/profile/${comment.user_id}`}>
-                            User: {comment.user_id}
-                          </NavLink>
-                        </div>
-                      );
-                    })}
-                  </div>
                 </div>
               );
             })

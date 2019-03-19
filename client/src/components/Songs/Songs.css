@@ -13,6 +13,7 @@
 #master-container {
   display: flex;
   flex-wrap: wrap;
+  margin: 10px 10px 10px 10px;
 }
 
 #image-container {
@@ -25,21 +26,21 @@
 #song-container {
   display: flex;
   flex-wrap: wrap;
-  border: 5px solid darkgray;
-  border-radius: 5px;
   margin: 15px 15px 15px 15px;
   /* width: 100%; */
   background-color: #d1d1d1;
-}
-
-#song-container:hover {
-  border: 5px solid #00f281;
 }
 
 #info-box {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  border: 5px solid darkgray;
+  border-radius: 5px;
+}
+
+#info-box:hover {
+  border: 5px solid #00f281;
 }
 
 #song-title {
@@ -66,11 +67,27 @@
 }
 
 #comments-container {
-  border: 2px solid gray;
-  border-radius: 5px;
   margin: 10px 10px 10px 10px;
   background-color: #d1d1d1;
   width: 100%;
+}
+
+#comment-container {
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 0 0 2px 0;
+  background-color: #d1d1d1;
+  width: 100%;
+}
+
+#comment-text {
+  display: flex;
+  margin-left: 5%;
+}
+
+#add-comment-form {
+  display: flex;
+  justify-content: flex-end;
 }
 
 #favorites-count {

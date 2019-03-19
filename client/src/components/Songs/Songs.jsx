@@ -116,27 +116,30 @@ export default class Songs extends Component {
           ? songs.map(song => {
               return (
                 <div key={song.id} id="master-container">
-                  <div id="song-container">
+                  <span id="image-container">
                     <img
                       src={song.img_url}
                       alt="link to song img"
                       className="img-song"
                     />
-                    <span id="info-box">
+                  </span>
+                  <span id="song-container">
+                    <div id="info-box">
                       <h3 id="song-title">{song.title}</h3>
-                      <p>
-                        Favorited: {""}
-                        <span id="favorites-count">{song.favorites}</span>
-                        {""} times
+                      <p id="favorites-title">
+                        <div id="favorites-spacing">
+                          <span id="favorites-count">{song.favorites}</span>
+                          Favorites
+                        </div>
+                        <button id="favorite-button">Favorite</button>
                       </p>
-                    </span>
+                    </div>
                     <p>
                       Posted By:{" "}
                       <NavLink to={`/profile/${song.user_id}`}>
                         {song.username}
                       </NavLink>
                     </p>
-                    <button>Add to Favorites</button>
 
                     <form onSubmit={this.handleComment}>
                       <input
@@ -149,7 +152,7 @@ export default class Songs extends Component {
 
                     <br />
                     <br />
-                  </div>
+                  </span>
                   <div id="comments-container">
                     <p>Comments:</p>
                     {song.comments.map((comment, i) => {

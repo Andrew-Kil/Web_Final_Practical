@@ -32,19 +32,25 @@ export default class Profile extends Component {
       .catch(err => console.log(err));
 
     axios
+      .get("/favorites/user")
+      .then(res => {
+        this.setState({
+          userFavorites: res.data.data
+        });
+      })
+      .catch(err => console.log(err));
+
+    this.getSongsByUser();
+  }
+
+  getSongsByUser = () => {
+    axios
       .get("/songs/user")
       .then(res => {
         this.setState({ songs: res.data.data });
       })
       .catch(err => console.log(err));
-
-    axios
-      .get("/favorites/user")
-      .then(res => {
-        this.setState({ userFavorites: res.data.data });
-      })
-      .catch(err => console.log(err));
-  }
+  };
 
   handleChange = e => {
     this.setState({
@@ -78,6 +84,23 @@ export default class Profile extends Component {
         genre_id: selectedGenre
       })
       .catch(err => console.log(err));
+  };
+
+  handleComment = e => {
+    const { comment_body } = this.state;
+
+    e.preventDefault();
+
+    axios
+      .post("/comments", {
+        comment_body: comment_body,
+        user_id: 1,
+        song_id: e.target.name
+      })
+      .then(this.getSongsByUser())
+      .catch(err => console.log(err));
+
+    e.target.reset();
   };
 
   render() {
@@ -168,13 +191,13 @@ export default class Profile extends Component {
                           {song.username}
                         </NavLink>
                       </p>
-                      <p id="favorites-title">
+                      <div id="favorites-title">
                         <div id="favorites-spacing">
                           <span id="favorites-count">{song.favorites}</span>{" "}
                           Favorites
                         </div>
                         <button id="favorite-button">Favorite</button>
-                      </p>
+                      </div>
                     </div>
 
                     <div id="comments-container">
@@ -193,7 +216,7 @@ export default class Profile extends Component {
                     </div>
 
                     <div id="add-comment-form">
-                      <form onSubmit={this.handleComment}>
+                      <form onSubmit={this.handleComment} name={song.id}>
                         <input
                           type="text"
                           onChange={this.handleChange}
@@ -231,7 +254,7 @@ export default class Profile extends Component {
                           {userFavorite.username}
                         </NavLink>
                       </p>
-                      <p id="favorites-title">
+                      <div id="favorites-title">
                         <div id="favorites-spacing">
                           <span id="favorites-count">
                             {userFavorite.favorites}
@@ -239,7 +262,7 @@ export default class Profile extends Component {
                           Favorites
                         </div>
                         <button id="favorite-button">Favorite</button>
-                      </p>
+                      </div>
                     </div>
 
                     {/* <div id="comments-container">
@@ -258,7 +281,10 @@ export default class Profile extends Component {
                     </div> */}
 
                     <div id="add-comment-form">
-                      <form onSubmit={this.handleComment}>
+                      <form
+                        onSubmit={this.handleComment}
+                        name={userFavorite.id}
+                      >
                         <input
                           type="text"
                           onChange={this.handleChange}

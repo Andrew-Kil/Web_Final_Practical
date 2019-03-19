@@ -12,13 +12,17 @@ export default class SongsByPop extends Component {
   };
 
   componentDidMount() {
+    this.getSongsByPop();
+  }
+
+  getSongsByPop = () => {
     axios
       .get("/songs/bypop")
       .then(res => {
         this.setState({ songs: res.data.data });
       })
       .catch(err => console.log(err));
-  }
+  };
 
   handleChange = e => {
     const { search } = this.state;
@@ -47,11 +51,12 @@ export default class SongsByPop extends Component {
       .post("/comments", {
         comment_body: comment_body,
         user_id: 1,
-        song_id: 1
+        song_id: e.target.name
       })
+      .then(this.getSongsByPop())
       .catch(err => console.log(err));
 
-    console.log("HURRAY!");
+    e.target.reset();
   };
 
   render() {
@@ -102,13 +107,13 @@ export default class SongsByPop extends Component {
                           {song.username}
                         </NavLink>
                       </p>
-                      <p id="favorites-title">
+                      <div id="favorites-title">
                         <div id="favorites-spacing">
                           <span id="favorites-count">{song.favorites}</span>{" "}
                           Favorites
                         </div>
                         <button id="favorite-button">Favorite</button>
-                      </p>
+                      </div>
                     </div>
 
                     <div id="comments-container">
@@ -127,7 +132,7 @@ export default class SongsByPop extends Component {
                     </div>
 
                     <div id="add-comment-form">
-                      <form onSubmit={this.handleComment}>
+                      <form onSubmit={this.handleComment} name={song.id}>
                         <input
                           type="text"
                           onChange={this.handleChange}
@@ -163,27 +168,40 @@ export default class SongsByPop extends Component {
                           {song.username}
                         </NavLink>
                       </p>
-                      <p id="favorites-title">
+                      <div id="favorites-title">
                         <div id="favorites-spacing">
                           <span id="favorites-count">{song.favorites}</span>{" "}
                           Favorites
                         </div>
                         <button id="favorite-button">Favorite</button>
-                      </p>
+                      </div>
                     </div>
 
-                    {song.comments.map((comment, i) => {
-                      return (
-                        <div key={i} id="comment-container">
-                          <span id="comment-text">
-                            "{comment.comment_body}"
-                          </span>
-                          <NavLink to={`/profile/${comment.user_id}`}>
-                            User: {comment.user_id}
-                          </NavLink>
-                        </div>
-                      );
-                    })}
+                    <div id="comments-container">
+                      {song.comments.map((comment, i) => {
+                        return (
+                          <div key={i} id="comment-container">
+                            <span id="comment-text">
+                              "{comment.comment_body}"
+                            </span>
+                            <NavLink to={`/profile/${comment.user_id}`}>
+                              User: {comment.user_id}
+                            </NavLink>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    <div id="add-comment-form">
+                      <form onSubmit={this.handleComment} name={song.id}>
+                        <input
+                          type="text"
+                          onChange={this.handleChange}
+                          name="comment_body"
+                        />
+                        <button type="submit">Add Comment</button>
+                      </form>
+                    </div>
                     <br />
                     <br />
                   </span>

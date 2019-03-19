@@ -115,19 +115,21 @@ export default class Songs extends Component {
         {!didSearch
           ? songs.map(song => {
               return (
-                <div key={song.id}>
+                <div key={song.id} id="master-container">
                   <div id="song-container">
-                    <h3 id="song-title">{song.title}</h3>
                     <img
                       src={song.img_url}
                       alt="link to song img"
                       className="img-song"
                     />
-                    <p>
-                      Favorited: {""}
-                      <span id="favorites-count">{song.favorites}</span>
-                      {""} times
-                    </p>
+                    <span id="info-box">
+                      <h3 id="song-title">{song.title}</h3>
+                      <p>
+                        Favorited: {""}
+                        <span id="favorites-count">{song.favorites}</span>
+                        {""} times
+                      </p>
+                    </span>
                     <p>
                       Posted By:{" "}
                       <NavLink to={`/profile/${song.user_id}`}>

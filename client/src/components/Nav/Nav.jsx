@@ -8,14 +8,26 @@ export default function Nav() {
     <div>
       <nav id="nav">
         <span id="nav-title">
-          <NavLink to="/">Earworm Report</NavLink>
+          <NavLink to="/" id="nav-link">
+            Earworm Report
+          </NavLink>
         </span>
         <div id="nav-links">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/songs">All Songs</NavLink>
-          <NavLink to="/songs/bypop">By Popularity</NavLink>
-          <NavLink to="/songs/bygenre">By Genre</NavLink>
-          <NavLink to="/profile">My Profile</NavLink>
+          <NavLink to="/" id="nav-link">
+            Home
+          </NavLink>
+          <NavLink to="/songs" id="nav-link">
+            All Songs
+          </NavLink>
+          <NavLink to="/songs/bypop" id="nav-link">
+            By Popularity
+          </NavLink>
+          <NavLink to="/songs/bygenre" id="nav-link">
+            By Genre
+          </NavLink>
+          <NavLink to="/profile" id="nav-link">
+            My Profile
+          </NavLink>
         </div>
       </nav>
     </div>

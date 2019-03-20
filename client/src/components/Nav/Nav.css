@@ -1,11 +1,6 @@
 a {
   text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
-
-a:hover {
-  color: #00f281;
+  color: black;
 }
 
 #nav {
@@ -13,23 +8,30 @@ a:hover {
   color: white;
   height: 100px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   font-size: 20px;
   font-family: "Ubuntu", sans-serif;
-
-  /* position: fixed;
-  top: 0;
-  width: 100%; */
 }
 
 #nav-title {
   font-weight: bold;
   font-size: 30px;
   font-family: "Ubuntu", sans-serif;
+  margin-left: 3%;
 }
 
 #nav-title:hover {
+  color: #00f281;
+}
+
+#nav-link {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+#nav-link:hover {
   color: #00f281;
 }
 
@@ -38,11 +40,3 @@ a:hover {
   display: flex;
   justify-content: space-around;
 }
-
-/* #post-song-form {
-  border: 5px solid black;
-  border-radius: 5px;
-  width: 20%;
-  margin-left: 40%;
-  margin-top: 50px;
-} */

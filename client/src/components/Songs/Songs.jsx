@@ -124,7 +124,7 @@ export default class Songs extends Component {
                   <span id="song-container">
                     <div id="info-box">
                       <h3 id="song-title">{song.title}</h3>
-                      <p>
+                      <p id="posted-by-text">
                         Posted By:{" "}
                         <NavLink to={`/profile/${song.user_id}`}>
                           {song.username}

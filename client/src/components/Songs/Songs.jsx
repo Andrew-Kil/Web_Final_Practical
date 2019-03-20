@@ -162,7 +162,9 @@ export default class Songs extends Component {
                           name="comment_body"
                           id="comment-input-field"
                         />
-                        <button type="submit">Add Comment</button>
+                        <button type="submit" id="add-comment-button">
+                          Add Comment
+                        </button>
                       </form>
                     </div>
 

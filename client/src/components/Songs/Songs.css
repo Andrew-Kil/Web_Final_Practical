@@ -89,10 +89,10 @@
   justify-content: space-between;
   border: 2px solid black;
   border-radius: 5px;
-  margin: 5px 5px 5px 5px;
+  margin: 3px 3px 3px 3px;
   padding: 5px 5px 5px 5px;
   background-color: whitesmoke;
-  width: 80%;
+  width: 75%;
 }
 
 #comment-container > a {
@@ -109,6 +109,20 @@
 #add-comment-form {
   display: flex;
   justify-content: flex-end;
+  width: 100%;
+}
+
+#add-comment-form > form {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+#add-comment-button {
+  border-radius: 5px;
+  border: 2px solid black;
+  margin-right: 5%;
+  font-weight: bold;
 }
 
 #favorites-count {
@@ -119,7 +133,9 @@
 #comment-input-field {
   border-radius: 5px;
   border: 2px solid black;
-  width: 80%;
+  width: 50%;
+  height: 70%;
+  margin-right: 5%;
 }
 
 .ubuntu-font {
@@ -141,4 +157,6 @@
 .img-song {
   width: 150px;
   height: 150px;
+  border-radius: 5px;
+  border: 4px solid black;
 }

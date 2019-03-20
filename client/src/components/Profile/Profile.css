@@ -4,9 +4,15 @@
 
 #post-song {
   margin-top: 20px;
-  background-color: lightblue;
   width: 100vw;
   height: 100px;
+}
+
+#post-song-form {
+  width: 20%;
+  background-color: lightblue;
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
 #profile-buttons {

@@ -83,7 +83,7 @@ export default class UserProfile extends Component {
             onClick={this.selectedButton}
             name="favorites-button"
           >
-            Favorites
+            Favorited
           </button>
         </div>
 

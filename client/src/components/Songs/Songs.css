@@ -12,8 +12,9 @@
 
 #master-container {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   margin: 10px 10px 10px 10px;
+  width: 80%;
 }
 
 #image-container {
@@ -26,7 +27,8 @@
 #song-container {
   display: flex;
   flex-wrap: wrap;
-  margin: 15px 15px 15px 15px;
+  justify-content: flex-end;
+  /* margin: 15px 15px 15px 15px; */
   /* width: 100%; */
   background-color: #d1d1d1;
 }
@@ -34,13 +36,13 @@
 #info-box {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  border: 5px solid darkgray;
+  width: 90%;
+  border: 2px solid black;
   border-radius: 5px;
 }
 
 #info-box:hover {
-  border: 5px solid #00f281;
+  border: 2px solid #00f281;
 }
 
 #song-title {
@@ -52,32 +54,44 @@
 
 #favorites-title {
   display: flex;
-  justify-content: flex-end;
+  padding-right: 2%;
 }
 
 #favorite-button {
-  width: 60px;
-  height: 20px;
+  margin: auto 0;
+  width: 80px;
+  height: 30px;
   border-radius: 10px;
   font-weight: bold;
+  font-size: 12px;
 }
 
 #favorites-spacing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-right: 10%;
+  color: #621389;
 }
 
 #comments-container {
   margin: 10px 10px 10px 10px;
   background-color: #d1d1d1;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 #comment-container {
+  display: flex;
+  justify-content: space-between;
   border: 2px solid black;
   border-radius: 5px;
-  margin: 0 0 2px 0;
-  background-color: #d1d1d1;
-  width: 100%;
+  margin: 5px 5px 5px 5px;
+  padding: 5px 5px 5px 5px;
+  background-color: whitesmoke;
+  width: 80%;
 }
 
 #comment-text {
@@ -91,8 +105,8 @@
 }
 
 #favorites-count {
-  color: #621389;
   font-weight: 700;
+  padding-right: 5px;
 }
 
 .ubuntu-font {

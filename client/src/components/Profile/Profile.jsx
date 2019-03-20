@@ -128,13 +128,13 @@ export default class Profile extends Component {
             onClick={this.selectedButton}
             name="favorites-button"
           >
-            Favorites
+            Favorited
           </button>
         </div>
 
         {posted ? (
           <div id="post-song">
-            <form onSubmit={this.postSong}>
+            <form onSubmit={this.postSong} id="post-song-form">
               Add New Song
               <br />
               <label>

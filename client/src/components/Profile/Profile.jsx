@@ -13,7 +13,8 @@ export default class Profile extends Component {
     selectedGenre: "",
     songs: [],
     genres: [],
-    userFavorites: []
+    userFavorites: [],
+    message: ""
   };
 
   componentDidMount() {
@@ -83,6 +84,7 @@ export default class Profile extends Component {
         // since we will always be logged in as the first user, I specified that the poster will always be that user
         genre_id: selectedGenre
       })
+      .then(this.setState({ message: " - Thank you!" }))
       .catch(err => console.log(err));
   };
 
@@ -136,7 +138,9 @@ export default class Profile extends Component {
           <div id="post-song">
             <form onSubmit={this.postSong} id="post-song-form">
               Add New Song
-              <br />
+              <span className="ubuntu-font" id="message">
+                {this.state.message ? this.state.message : " "}
+              </span>
               <label>
                 <input
                   placeholder="Title"

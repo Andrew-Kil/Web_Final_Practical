@@ -158,5 +158,9 @@
   width: 150px;
   height: 150px;
   border-radius: 5px;
-  border: 4px solid black;
+  border: 6px solid #621389;
+}
+
+.img-song:hover {
+  border: 6px solid #00f281;
 }

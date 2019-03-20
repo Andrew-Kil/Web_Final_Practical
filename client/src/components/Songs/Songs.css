@@ -94,6 +94,12 @@
   width: 80%;
 }
 
+#comment-container > a {
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+}
+
 #comment-text {
   display: flex;
   margin-left: 5%;
@@ -107,6 +113,12 @@
 #favorites-count {
   font-weight: 700;
   padding-right: 5px;
+}
+
+#comment-input-field {
+  border-radius: 5px;
+  border: 2px solid black;
+  width: 100%;
 }
 
 .ubuntu-font {

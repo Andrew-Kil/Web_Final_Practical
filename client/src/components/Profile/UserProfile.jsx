@@ -107,13 +107,13 @@ export default class UserProfile extends Component {
                           {song.username}
                         </NavLink>
                       </p>
-                      <p id="favorites-title">
+                      <div id="favorites-title">
                         <div id="favorites-spacing">
                           <span id="favorites-count">{song.favorites}</span>{" "}
                           Favorites
                         </div>
                         <button id="favorite-button">Favorite</button>
-                      </p>
+                      </div>
                     </div>
 
                     <div id="comments-container">
@@ -137,6 +137,7 @@ export default class UserProfile extends Component {
                           type="text"
                           onChange={this.handleChange}
                           name="comment_body"
+                          id="comment-input-field"
                         />
                         <button type="submit">Add Comment</button>
                       </form>
@@ -170,7 +171,7 @@ export default class UserProfile extends Component {
                           {userFavorite.username}
                         </NavLink>
                       </p>
-                      <p id="favorites-title">
+                      <div id="favorites-title">
                         <div id="favorites-spacing">
                           <span id="favorites-count">
                             {userFavorite.favorites}
@@ -178,7 +179,7 @@ export default class UserProfile extends Component {
                           Favorites
                         </div>
                         <button id="favorite-button">Favorite</button>
-                      </p>
+                      </div>
                     </div>
 
                     {/* <div id="comments-container">
@@ -202,6 +203,7 @@ export default class UserProfile extends Component {
                           type="text"
                           onChange={this.handleChange}
                           name="comment_body"
+                          id="comment-input-field"
                         />
                         <button type="submit">Add Comment</button>
                       </form>

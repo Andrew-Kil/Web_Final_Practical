@@ -58,6 +58,7 @@ export default class Songs extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
     this.setState({
       didSearch: false,
       search: ""
@@ -159,6 +160,7 @@ export default class Songs extends Component {
                           type="text"
                           onChange={this.handleChange}
                           name="comment_body"
+                          id="comment-input-field"
                         />
                         <button type="submit">Add Comment</button>
                       </form>
@@ -220,6 +222,7 @@ export default class Songs extends Component {
                           type="text"
                           onChange={this.handleChange}
                           name="comment_body"
+                          id="comment-input-field"
                         />
                         <button type="submit">Add Comment</button>
                       </form>

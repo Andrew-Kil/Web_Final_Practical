@@ -137,6 +137,7 @@ export default class SongsByPop extends Component {
                           type="text"
                           onChange={this.handleChange}
                           name="comment_body"
+                          id="comment-input-field"
                         />
                         <button type="submit">Add Comment</button>
                       </form>
@@ -198,6 +199,7 @@ export default class SongsByPop extends Component {
                           type="text"
                           onChange={this.handleChange}
                           name="comment_body"
+                          id="comment-input-field"
                         />
                         <button type="submit">Add Comment</button>
                       </form>

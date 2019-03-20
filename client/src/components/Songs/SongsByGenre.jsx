@@ -38,17 +38,23 @@ export default class SongsByGenre extends Component {
   };
 
   handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSelect = e => {
     const { selectedGenre } = this.state;
 
     selectedGenre
-      ? this.setState({ [e.target.name]: e.target.value, didSearch: true })
+      ? this.setState({ [e.target.name]: e.target.value })
       : this.setState({
+          didSelect: true,
           [e.target.name]: e.target.value
         });
   };
 
   handleSubmit = e => {
     e.preventDefault();
+
     this.setState({ didSelect: false });
   };
 
@@ -85,11 +91,11 @@ export default class SongsByGenre extends Component {
           <label htmlFor="submit-button" className="ubuntu-font">
             Select Genre:
           </label>
-          <select onChange={this.handleChange}>
+          <select onChange={this.handleSelect} name="selectedGenre">
             <option value="0" />
             {genres.map(genre => {
               return (
-                <option key={genre.id} value={genre.genre_name}>
+                <option key={genre.id} name="selectedGenre">
                   {genre.genre_name}
                 </option>
               );

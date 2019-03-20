@@ -93,10 +93,10 @@ VALUES
     ('C.R.E.A.M.', 'https://www.rollingstone.com/wp-content/uploads/2018/06/rs-138255-wutangclan-306x306-1354651290.jpg', 3, 1),
     ('They Reminisce Over You', 'https://www.rollingstone.com/wp-content/uploads/2018/06/rs-138256-peterock-306x306-1354651447.jpg', 1, 1),
     ('Hypnotize', 'https://uclaadmissions.files.wordpress.com/2011/09/picture-2.jpg', 7, 1),
-    ('Strobe', 'https://static.thetoptens.com/img/items/549650.jpg', 4, 5),
-    ('Around the World', 'https://static.thetoptens.com/img/items/585021.jpg', 4, 5),
-    ('Levels', 'https://is1-ssl.mzstatic.com/image/thumb/Music/v4/9c/85/03/9c8503ad-fa65-a696-ee7c-298a1e321ac6/source/100x100bb.jpg', 1, 5),
-    ('Ghosts N Stuff', 'https://is3-ssl.mzstatic.com/image/thumb/Music/v4/af/0e/99/af0e99ef-2086-c1eb-e34b-d8461f75062b/source/100x100bb.jpg', 9, 5);
+    ('Strobe', 'https://static.thetoptens.com/img/items/549650.jpg', 4, 4),
+    ('Around the World', 'https://static.thetoptens.com/img/items/585021.jpg', 4, 4),
+    ('Levels', 'https://is1-ssl.mzstatic.com/image/thumb/Music/v4/9c/85/03/9c8503ad-fa65-a696-ee7c-298a1e321ac6/source/100x100bb.jpg', 1, 4),
+    ('Ghosts N Stuff', 'https://is3-ssl.mzstatic.com/image/thumb/Music/v4/af/0e/99/af0e99ef-2086-c1eb-e34b-d8461f75062b/source/100x100bb.jpg', 9, 4);
 
 
 INSERT INTO favorites

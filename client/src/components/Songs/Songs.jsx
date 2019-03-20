@@ -18,7 +18,7 @@ export default class Songs extends Component {
   }
 
   matchUser = ID => {
-    this.state.users.forEach(user => {
+    this.state.users.map(user => {
       console.log(typeof user.id);
       console.log(typeof ID);
       if (ID === user.id) {

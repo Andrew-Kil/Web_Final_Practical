@@ -4,15 +4,21 @@
 
 #post-song {
   margin-top: 20px;
+  margin-bottom: 5%;
   width: 100vw;
   height: 100px;
 }
 
 #post-song-form {
   width: 20%;
-  background-color: lightblue;
+  background-color: #d1d1d1;
   margin: 0 auto;
   border-radius: 10px;
+  border: 5px solid #621389;
+}
+
+#form-title {
+  border-bottom: 2px solid darkslategray;
 }
 
 #profile-buttons {
@@ -24,7 +30,7 @@
 
 #posted-button,
 #favorites-button {
-  width: 150px;
+  width: 250px;
   height: 50px;
   border-radius: 10px;
   font-weight: bold;

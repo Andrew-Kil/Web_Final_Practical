@@ -12,7 +12,21 @@ const getAllComments = (req, res, next) => {
     .catch(err => next(err));
 };
 
-// const getAllCommentsForSong;
+// const getAllCommentsForSong = (req, res, next) => {
+//   const songID = Number(req.params.id);
+//   db.any(
+//     "SELECT comments.* FROM comments JOIN songs ON comments.song_id = songs.id WHERE songs.id = $1",
+//     songID
+//   )
+//     .then(data => {
+//       res.status(200).json({
+//         status: "Success",
+//         data: data,
+//         message: "Removed a comment"
+//       });
+//     })
+//     .catch(err => next(err));
+// };
 
 const createComment = (req, res, next) => {
   db.none(

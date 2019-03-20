@@ -137,7 +137,7 @@ export default class Profile extends Component {
         {posted ? (
           <div id="post-song">
             <form onSubmit={this.postSong} id="post-song-form">
-              Add New Song
+              <h3>Add New Song</h3>
               <span className="ubuntu-font" id="message">
                 {this.state.message ? this.state.message : " "}
               </span>

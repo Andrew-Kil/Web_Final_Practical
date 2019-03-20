@@ -103,6 +103,7 @@ export default class Songs extends Component {
             name="search"
             onChange={this.handleChange}
             value={search}
+            id="search-input-field"
           />
           <button type="submit" id="submit-button" className="ubuntu-font">
             Reset

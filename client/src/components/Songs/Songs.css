@@ -130,12 +130,27 @@
   padding-right: 5px;
 }
 
+#search-input-field {
+  width: 30%;
+  border: 2px solid black;
+  border-radius: 5px;
+  height: 20%;
+}
+
 #comment-input-field {
   border-radius: 5px;
   border: 2px solid black;
   width: 50%;
   height: 70%;
   margin-right: 5%;
+}
+
+#submit-button {
+  width: 50px;
+  height: 25px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 .ubuntu-font {
@@ -149,9 +164,23 @@
 
 .form-songs {
   width: 100vw;
-  display: flex;
+  height: 20vh;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* flex-wrap: wrap;
   justify-content: center;
-  align-content: center;
+  align-content: center; */
+}
+
+.form-songs > label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-songs > input {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
 }
 
 .img-song {

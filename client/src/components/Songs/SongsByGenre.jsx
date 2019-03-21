@@ -8,7 +8,7 @@ export default class SongsByGenre extends Component {
   state = {
     songs: [],
     genres: [],
-    didSelect: false,
+    didSubmit: false,
     selectedGenre: ""
   };
 
@@ -38,24 +38,14 @@ export default class SongsByGenre extends Component {
   };
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  handleSelect = e => {
-    const { selectedGenre } = this.state;
-
-    selectedGenre
-      ? this.setState({ [e.target.name]: e.target.value })
-      : this.setState({
-          didSelect: true,
-          [e.target.name]: e.target.value
-        });
+    // if (this.state.didSubmit) this.setState({ didSubmit: false });
+    this.setState({ didSubmit: false, [e.target.name]: e.target.value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
-    this.setState({ didSelect: false, selectedGenre: "" });
+    this.setState({ didSubmit: true });
 
     // window.location.reload();
   };
@@ -80,7 +70,7 @@ export default class SongsByGenre extends Component {
   render() {
     console.log(this.state);
 
-    const { genres, didSelect, songs, selectedGenre } = this.state;
+    const { genres, didSubmit, songs, selectedGenre } = this.state;
 
     const filteredSongs = songs.filter(song => {
       return song.genre_name === selectedGenre;
@@ -93,7 +83,7 @@ export default class SongsByGenre extends Component {
           <label htmlFor="submit-button" className="ubuntu-font">
             Select Genre:
           </label>
-          <select onChange={this.handleSelect} name="selectedGenre">
+          <select onChange={this.handleChange} name="selectedGenre">
             <option value="0" />
             {genres.map(genre => {
               return (
@@ -103,13 +93,13 @@ export default class SongsByGenre extends Component {
               );
             })}
           </select>
-          <button type="submit" id="submit-button">
-            Reset
+          <button type="submit" id="submit-button" className="ubuntu-font">
+            Submit
           </button>
         </form>
         <br />
 
-        {!didSelect
+        {!didSubmit
           ? songs.map(song => {
               return (
                 <div key={song.id} id="master-container">
@@ -161,7 +151,9 @@ export default class SongsByGenre extends Component {
                           name="comment_body"
                           id="comment-input-field"
                         />
-                        <button type="submit">Add Comment</button>
+                        <button type="submit" id="add-comment-button">
+                          Add Comment
+                        </button>
                       </form>
                     </div>
 

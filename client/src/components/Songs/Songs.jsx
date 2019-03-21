@@ -54,21 +54,17 @@ export default class Songs extends Component {
   // The reason for this axios call is because I am trying to figure out how to implement favorites. My logic is that since we are always logged in as our sample user, we only really need that users favorites. The next step is how to tackle the favorites button which should conditionally render either "favorite" or "unfavorite"
 
   handleChange = e => {
-    const { search } = this.state;
-
-    search
-      ? this.setState({ [e.target.name]: e.target.value, didSearch: true })
-      : this.setState({
-          [e.target.name]: e.target.value
-        });
+    this.setState({
+      [e.target.name]: e.target.value,
+      didSearch: false
+    });
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
     this.setState({
-      didSearch: false,
-      search: ""
+      didSearch: true
     });
   };
 
@@ -113,7 +109,7 @@ export default class Songs extends Component {
             id="search-input-field"
           />
           <button type="submit" id="submit-button" className="ubuntu-font">
-            Reset
+            Submit
           </button>
         </form>
         <br />

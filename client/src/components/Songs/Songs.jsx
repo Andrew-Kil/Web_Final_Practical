@@ -75,10 +75,7 @@ export default class Songs extends Component {
         .catch(err => console.log(err));
     } else if (e.target.value === "unfavorite") {
       axios
-        .delete("/favorites", {
-          user_id: 1,
-          song_id: Number(e.target.name)
-        })
+        .delete(`/favorites/${e.target.name}`)
         .then(this.getFavorites())
         .catch(err => console.log(err));
     }

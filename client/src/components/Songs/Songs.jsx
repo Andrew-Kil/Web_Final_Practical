@@ -60,6 +60,17 @@ export default class Songs extends Component {
     });
   };
 
+  handleClick = e => {
+    debugger;
+
+    if (e.target.value === "favorite") {
+      axios.post("/favorites", {
+        user_id: 1,
+        song_id: Number(e.target.name)
+      });
+    }
+  };
+
   handleSubmit = e => {
     e.preventDefault();
 
@@ -139,21 +150,23 @@ export default class Songs extends Component {
                           <span id="favorites-count">{song.favorites}</span>{" "}
                           Favorites
                         </div>
-                        <button id="favorite-button">
-                          {/* {this.state.favorites.forEach(favorite => {
-                            favorite.includes(song.title) ? (
-                            <span>Favorite</span>
-                          ) : (
-                            <span>Unfavorite</span>
-                          )})} */}
-
+                        <button
+                          id="favorite-button"
+                          name={song.id}
+                          value={
+                            this.state.favorites.find(
+                              favorite => favorite.title === song.title
+                            )
+                              ? "unfavorite"
+                              : "favorite"
+                          }
+                          onClick={this.handleClick}
+                        >
                           {this.state.favorites.find(
                             favorite => favorite.title === song.title
-                          ) ? (
-                            <span>Unfavorite</span>
-                          ) : (
-                            <span>Favorite</span>
-                          )}
+                          )
+                            ? "Unfavorite"
+                            : "Favorite"}
                         </button>
                       </div>
                     </div>

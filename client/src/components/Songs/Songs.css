@@ -42,10 +42,6 @@
   background-color: whitesmoke;
 }
 
-#info-box:hover {
-  border: 2px solid #00f281;
-}
-
 #song-title {
   display: flex;
   justify-content: flex-start;
@@ -62,9 +58,14 @@
   margin: auto 0;
   width: 80px;
   height: 30px;
+  border: 2px solid black;
   border-radius: 10px;
   font-weight: bold;
   font-size: 12px;
+}
+
+#favorite-button:hover {
+  background-color: #00f281;
 }
 
 #favorites-spacing {
@@ -101,6 +102,11 @@
   font-weight: 500;
 }
 
+#posted-by-text > a:hover {
+  background-color: #00f281;
+  border-radius: 5px;
+}
+
 #comment-text {
   display: flex;
   margin-left: 1%;
@@ -126,6 +132,10 @@
   font-weight: bold;
   height: 32px;
   background-color: whitesmoke;
+}
+
+#add-comment-button:hover {
+  background-color: #00f281;
 }
 
 #favorites-count {

@@ -8,6 +8,7 @@ export default class Songs extends Component {
   state = {
     songs: [],
     users: [],
+    favorites: [],
     didSearch: false,
     search: ""
   };
@@ -15,6 +16,7 @@ export default class Songs extends Component {
   componentDidMount() {
     this.getSongs();
     this.getUsers();
+    this.getFavorites();
   }
 
   // identifyUser = ID => {
@@ -43,6 +45,13 @@ export default class Songs extends Component {
       })
       .catch(err => console.log(err));
   };
+
+  getFavorites = () => {
+    axios.get("/favorites/user").then(res => {
+      this.setState({ favorites: res.data.data[0].favorites });
+    });
+  };
+  // The reason for this axios call is because I am trying to figure out how to implement favorites. My logic is that since we are always logged in as our sample user, we only really need that users favorites. The next step is how to tackle the favorites button which should conditionally render either "favorite" or "unfavorite"
 
   handleChange = e => {
     const { search } = this.state;
@@ -134,7 +143,22 @@ export default class Songs extends Component {
                           <span id="favorites-count">{song.favorites}</span>{" "}
                           Favorites
                         </div>
-                        <button id="favorite-button">Favorite</button>
+                        <button id="favorite-button">
+                          {/* {this.state.favorites.forEach(favorite => {
+                            favorite.includes(song.title) ? (
+                            <span>Favorite</span>
+                          ) : (
+                            <span>Unfavorite</span>
+                          )})} */}
+
+                          {this.state.favorites.find(
+                            favorite => favorite.title === song.title
+                          ) ? (
+                            <span>Unfavorite</span>
+                          ) : (
+                            <span>Favorite</span>
+                          )}
+                        </button>
                       </div>
                     </div>
 

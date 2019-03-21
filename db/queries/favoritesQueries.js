@@ -1,7 +1,9 @@
 const { db } = require("./index.js");
 
 const getAllFavorites = (req, res, next) => {
-  db.any("SELECT * FROM favorites")
+  db.any(
+    "SELECT users.*, json_agg(favorites.*) AS favorites FROM users JOIN favorites ON users.id = favorites.user_id GROUP BY users.id ORDER BY users.id"
+  )
     .then(data => {
       res.status(200).json({
         status: "Success",

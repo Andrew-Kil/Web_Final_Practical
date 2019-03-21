@@ -172,6 +172,13 @@ export default class Songs extends Component {
                               ? "unfavorite"
                               : "favorite"
                           }
+                          className={
+                            this.state.favorites.find(
+                              favorite => favorite.title === song.title
+                            )
+                              ? "unfavorite"
+                              : "favorite"
+                          }
                           onClick={this.handleClick}
                         >
                           {this.state.favorites.find(

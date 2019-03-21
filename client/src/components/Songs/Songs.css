@@ -56,7 +56,7 @@
 
 #favorite-button {
   margin: auto 0;
-  width: 80px;
+  width: 100px;
   height: 30px;
   border: 2px solid black;
   border-radius: 10px;
@@ -65,7 +65,7 @@
 }
 
 #favorite-button:hover {
-  background-color: #00f281;
+  border: 2px dashed black;
 }
 
 #favorites-spacing {
@@ -105,6 +105,17 @@
 #comment-container > a:hover {
   background-color: #00f281;
   border-radius: 5px;
+}
+
+#posted-by-text {
+  display: flex;
+  align-items: center;
+  font-family: "Arimo", sans-serif;
+}
+
+#posted-by-text > a {
+  margin-left: 5px;
+  color: #621389;
 }
 
 #posted-by-text > a:hover {
@@ -211,4 +222,12 @@
 
 .img-song:hover {
   border: 6px solid #621389;
+}
+
+.favorite {
+  background-color: #00f281;
+}
+
+.unfavorite {
+  background-color: #d1d1d1;
 }

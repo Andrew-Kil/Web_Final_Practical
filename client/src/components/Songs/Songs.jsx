@@ -64,6 +64,14 @@ export default class Songs extends Component {
     });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+
+    this.setState({
+      didSearch: true
+    });
+  };
+
   handleClick = e => {
     if (e.target.value === "favorite") {
       axios
@@ -81,14 +89,6 @@ export default class Songs extends Component {
         .then(() => this.getFavorites())
         .catch(err => console.log(err));
     }
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-
-    this.setState({
-      didSearch: true
-    });
   };
 
   handleComment = e => {

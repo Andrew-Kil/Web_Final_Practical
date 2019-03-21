@@ -7,12 +7,14 @@ import "./Songs.css";
 export default class SongsByPop extends Component {
   state = {
     songs: [],
+    favorites: [],
     didSearch: false,
     search: ""
   };
 
   componentDidMount() {
     this.getSongsByPop();
+    this.getFavorites();
   }
 
   getSongsByPop = () => {
@@ -22,6 +24,14 @@ export default class SongsByPop extends Component {
         this.setState({ songs: res.data.data });
       })
       .catch(err => console.log(err));
+  };
+
+  getFavorites = () => {
+    axios.get("/favorites/user").then(res => {
+      this.setState({
+        favorites: res.data.data[0].favorites
+      });
+    });
   };
 
   handleChange = e => {
@@ -37,6 +47,25 @@ export default class SongsByPop extends Component {
     this.setState({
       didSearch: true
     });
+  };
+
+  handleClick = e => {
+    if (e.target.value === "favorite") {
+      axios
+        .post("/favorites", {
+          user_id: 1,
+          song_id: Number(e.target.name)
+        })
+        .then(() => this.getSongsByPop())
+        .then(() => this.getFavorites())
+        .catch(err => console.log(err));
+    } else if (e.target.value === "unfavorite") {
+      axios
+        .delete(`/favorites/${e.target.name}`)
+        .then(() => this.getSongsByPop())
+        .then(() => this.getFavorites())
+        .catch(err => console.log(err));
+    }
   };
 
   handleComment = e => {
@@ -99,7 +128,7 @@ export default class SongsByPop extends Component {
                   <span id="song-container">
                     <div id="info-box">
                       <h3 id="song-title">{song.title}</h3>
-                      <p>
+                      <p id="posted-by-text">
                         Posted By:{" "}
                         <NavLink to={`/profile/${song.user_id}`}>
                           {song.username}
@@ -110,7 +139,24 @@ export default class SongsByPop extends Component {
                           <span id="favorites-count">{song.favorites}</span>{" "}
                           Favorites
                         </div>
-                        <button id="favorite-button">Favorite</button>
+                        <button
+                          id="favorite-button"
+                          name={song.id}
+                          value={
+                            this.state.favorites.find(
+                              favorite => favorite.title === song.title
+                            )
+                              ? "unfavorite"
+                              : "favorite"
+                          }
+                          onClick={this.handleClick}
+                        >
+                          {this.state.favorites.find(
+                            favorite => favorite.title === song.title
+                          )
+                            ? "Unfavorite"
+                            : "Favorite"}
+                        </button>
                       </div>
                     </div>
 

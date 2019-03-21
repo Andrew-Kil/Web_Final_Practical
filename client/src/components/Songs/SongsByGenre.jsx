@@ -8,6 +8,7 @@ export default class SongsByGenre extends Component {
   state = {
     songs: [],
     genres: [],
+    favorites: [],
     didSubmit: false,
     selectedGenre: ""
   };
@@ -15,6 +16,7 @@ export default class SongsByGenre extends Component {
   componentDidMount() {
     this.getSongs();
     this.getGenres();
+    this.getFavorites();
   }
 
   getSongs = () => {
@@ -37,9 +39,20 @@ export default class SongsByGenre extends Component {
       .catch(err => console.log(err));
   };
 
+  getFavorites = () => {
+    axios.get("/favorites/user").then(res => {
+      this.setState({
+        favorites: res.data.data[0].favorites
+      });
+    });
+  };
+
   handleChange = e => {
     // if (this.state.didSubmit) this.setState({ didSubmit: false });
-    this.setState({ didSubmit: false, [e.target.name]: e.target.value });
+    this.setState({
+      didSubmit: false,
+      [e.target.name]: e.target.value
+    });
   };
 
   handleSubmit = e => {
@@ -48,6 +61,25 @@ export default class SongsByGenre extends Component {
     this.setState({ didSubmit: true });
 
     // window.location.reload();
+  };
+
+  handleClick = e => {
+    if (e.target.value === "favorite") {
+      axios
+        .post("/favorites", {
+          user_id: 1,
+          song_id: Number(e.target.name)
+        })
+        .then(() => this.getSongs())
+        .then(() => this.getFavorites())
+        .catch(err => console.log(err));
+    } else if (e.target.value === "unfavorite") {
+      axios
+        .delete(`/favorites/${e.target.name}`)
+        .then(() => this.getSongs())
+        .then(() => this.getFavorites())
+        .catch(err => console.log(err));
+    }
   };
 
   handleComment = e => {
@@ -113,7 +145,7 @@ export default class SongsByGenre extends Component {
                   <span id="song-container">
                     <div id="info-box">
                       <h3 id="song-title">{song.title}</h3>
-                      <p>
+                      <p id="posted-by-text">
                         Posted By:{" "}
                         <NavLink to={`/profile/${song.user_id}`}>
                           {song.username}
@@ -124,10 +156,26 @@ export default class SongsByGenre extends Component {
                           <span id="favorites-count">{song.favorites}</span>{" "}
                           Favorites
                         </div>
-                        <button id="favorite-button">Favorite</button>
+                        <button
+                          id="favorite-button"
+                          name={song.id}
+                          value={
+                            this.state.favorites.find(
+                              favorite => favorite.title === song.title
+                            )
+                              ? "unfavorite"
+                              : "favorite"
+                          }
+                          onClick={this.handleClick}
+                        >
+                          {this.state.favorites.find(
+                            favorite => favorite.title === song.title
+                          )
+                            ? "Unfavorite"
+                            : "Favorite"}
+                        </button>
                       </div>
                     </div>
-
                     <div id="comments-container">
                       {song.comments.map((comment, i) => {
                         return (

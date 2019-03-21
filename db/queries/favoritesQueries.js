@@ -61,8 +61,8 @@ const createFavorite = (req, res, next) => {
 };
 
 const deleteFavorite = (req, res, next) => {
-  let userID = Number(req.params.id);
-  db.result("DELETE FROM favorites WHERE id=$1", userID)
+  let songID = Number(req.params.id);
+  db.result("DELETE FROM favorites WHERE song_id = $1 AND user_id = 1", songID)
     .then(data => {
       res.status(200).json({
         status: "Success",

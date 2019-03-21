@@ -64,10 +64,21 @@ export default class Songs extends Component {
     debugger;
 
     if (e.target.value === "favorite") {
-      axios.post("/favorites", {
-        user_id: 1,
-        song_id: Number(e.target.name)
-      });
+      axios
+        .post("/favorites", {
+          user_id: 1,
+          song_id: Number(e.target.name)
+        })
+        .then(this.getFavorites())
+        .catch(err => console.log(err));
+    } else if (e.target.value === "unfavorite") {
+      axios
+        .delete(`/favorites/${e.target.name}`, {
+          user_id: 1,
+          song_id: Number(e.target.name)
+        })
+        .then(this.getFavorites())
+        .catch(err => console.log(err));
     }
   };
 

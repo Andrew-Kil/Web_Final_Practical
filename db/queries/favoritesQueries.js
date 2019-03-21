@@ -14,7 +14,21 @@ const getAllFavorites = (req, res, next) => {
     .catch(err => next(err));
 };
 
-// const getAllFavoritesForSong;
+const getAllFavoritesForSong = (req, res, next) => {
+  let songID = Number(req.params.id);
+  db.any(
+    "SELECT * FROM favorites JOIN songs ON favorites.song_id = songs.id WHERE songs.id = $1",
+    songID
+  )
+    .then(data => {
+      res.status(200).json({
+        status: "Success",
+        data: data,
+        message: "Received all favorites for song"
+      });
+    })
+    .catch(err => next(err));
+};
 
 const getAllFavoritesForUser = (req, res, next) => {
   db.any(
@@ -77,7 +91,7 @@ const deleteFavorite = (req, res, next) => {
 
 module.exports = {
   getAllFavorites,
-  // getAllFavoritesForSong,
+  getAllFavoritesForSong,
   getAllFavoritesForUser,
   getAllFavoritersForAnotherUser,
   createFavorite,

@@ -14,7 +14,7 @@ const getAllUsers = (req, res, next) => {
 
 const getSingleUser = (req, res, next) => {
   const userId = Number(req.params.id);
-  db.one("SELECT * FROM users WHERE id=$1", userId)
+  db.one("SELECT username FROM users WHERE id=$1", userId)
     .then(data => {
       res.status(200).json({
         status: "Success",

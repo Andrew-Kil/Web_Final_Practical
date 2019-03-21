@@ -37,6 +37,10 @@ export default class Songs extends Component {
       .catch(err => console.log(err));
   };
 
+  // getUser = ID => {
+  //   axios.get(`/songs/${ID}`).then(res => this.setState({}));
+  // };
+
   getUsers = () => {
     axios
       .get("/users")

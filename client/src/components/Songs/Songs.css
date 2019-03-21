@@ -13,7 +13,7 @@
 #master-container {
   display: flex;
   /* flex-wrap: wrap; */
-  margin: 10px 10px 10px 10px;
+  margin: 10px 10px 20px 10px;
   width: 80%;
 }
 
@@ -119,10 +119,12 @@
 }
 
 #add-comment-button {
-  border-radius: 5px;
-  border: 2px solid black;
-  margin-right: 5%;
+  border-radius: 10px;
+  border: 4px solid #621389;
+  margin-right: 2%;
   font-weight: bold;
+  height: 32px;
+  background-color: whitesmoke;
 }
 
 #favorites-count {
@@ -141,7 +143,7 @@
   border-radius: 5px;
   border: 2px solid black;
   width: 50%;
-  height: 70%;
+  height: 26px;
   margin-right: 5%;
 }
 
@@ -186,8 +188,8 @@
 .img-song {
   width: 150px;
   height: 150px;
-  border-radius: 5px;
-  border: 6px solid #621389;
+  border-radius: 10px;
+  border: 6px solid black;
 }
 
 .img-song:hover {

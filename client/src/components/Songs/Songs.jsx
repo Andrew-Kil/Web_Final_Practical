@@ -17,16 +17,14 @@ export default class Songs extends Component {
     this.getUsers();
   }
 
-  matchUser = ID => {
-    this.state.users.map(user => {
-      console.log(typeof user.id);
-      console.log(typeof ID);
-      if (ID === user.id) {
-        console.log(typeof user.username);
-        return <p>{user.username}</p>;
-      }
-    });
-  };
+  // identifyUser = ID => {
+  //   this.state.users.forEach(user => {
+  //     if (ID === user.id) {
+  //       console.log("hurray", user.username);
+  //       ID = user.username;
+  //     }
+  //   });
+  // };
 
   getSongs = () => {
     axios

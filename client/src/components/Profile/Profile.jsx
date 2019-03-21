@@ -19,13 +19,6 @@ export default class Profile extends Component {
 
   componentDidMount() {
     axios
-      .get("/users/")
-      .then(res => {
-        this.setState({ users: res.data.data });
-      })
-      .catch(err => console.log(err));
-
-    axios
       .get("/genres")
       .then(res => {
         this.setState({ genres: res.data.data });
@@ -41,8 +34,19 @@ export default class Profile extends Component {
       })
       .catch(err => console.log(err));
 
+    this.getSongs();
+
     this.getSongsByUser();
   }
+
+  getSongs = () => {
+    axios
+      .get("/users/")
+      .then(res => {
+        this.setState({ users: res.data.data });
+      })
+      .catch(err => console.log(err));
+  };
 
   getSongsByUser = () => {
     axios
@@ -84,7 +88,8 @@ export default class Profile extends Component {
         // since we will always be logged in as the first user, I specified that the poster will always be that user
         genre_id: selectedGenre
       })
-      .then(this.setState({ message: " - Thank you!" }))
+      .then(this.setState({ message: " Posted!" }))
+      .then(this.getSongs())
       .catch(err => console.log(err));
   };
 

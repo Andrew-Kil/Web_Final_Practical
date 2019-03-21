@@ -55,7 +55,9 @@ export default class SongsByGenre extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.setState({ didSelect: false });
+    this.setState({ didSelect: false, selectedGenre: "" });
+
+    // window.location.reload();
   };
 
   handleComment = e => {

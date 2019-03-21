@@ -25,20 +25,17 @@ export default class SongsByPop extends Component {
   };
 
   handleChange = e => {
-    const { search } = this.state;
-
-    search
-      ? this.setState({ [e.target.name]: e.target.value, didSearch: true })
-      : this.setState({
-          [e.target.name]: e.target.value
-        });
+    this.setState({
+      [e.target.name]: e.target.value,
+      didSearch: false
+    });
   };
 
   handleSubmit = e => {
     e.preventDefault();
+
     this.setState({
-      didSearch: false,
-      search: ""
+      didSearch: true
     });
   };
 
@@ -80,9 +77,10 @@ export default class SongsByPop extends Component {
             name="search"
             onChange={this.handleChange}
             value={search}
+            id="search-input-field"
           />
-          <button type="submit" id="submit-button">
-            Reset
+          <button type="submit" id="submit-button" className="ubuntu-font">
+            Submit
           </button>
         </form>
         <br />
@@ -139,7 +137,9 @@ export default class SongsByPop extends Component {
                           name="comment_body"
                           id="comment-input-field"
                         />
-                        <button type="submit">Add Comment</button>
+                        <button type="submit" id="add-comment-button">
+                          Add Comment
+                        </button>
                       </form>
                     </div>
 

@@ -12,21 +12,21 @@ const getAllComments = (req, res, next) => {
     .catch(err => next(err));
 };
 
-// const getAllCommentsForSong = (req, res, next) => {
-//   const songID = Number(req.params.id);
-//   db.any(
-//     "SELECT comments.* FROM comments JOIN songs ON comments.song_id = songs.id WHERE songs.id = $1",
-//     songID
-//   )
-//     .then(data => {
-//       res.status(200).json({
-//         status: "Success",
-//         data: data,
-//         message: "Removed a comment"
-//       });
-//     })
-//     .catch(err => next(err));
-// };
+const getAllCommentsForSong = (req, res, next) => {
+  const songID = Number(req.params.id);
+  db.any(
+    "SELECT comments.* FROM comments JOIN songs ON comments.song_id = songs.id WHERE songs.id = $1",
+    songID
+  )
+    .then(data => {
+      res.status(200).json({
+        status: "Success",
+        data: data,
+        message: "Removed a comment"
+      });
+    })
+    .catch(err => next(err));
+};
 
 const createComment = (req, res, next) => {
   db.none(
@@ -42,7 +42,24 @@ const createComment = (req, res, next) => {
     .catch(err => next(err));
 };
 
-// const updateComment;
+const updateComment = (req, res, next) => {
+  db.none(
+    "UPDATE comments SET comment_body=${comment_body}, user_id=${user_id}, song_id=${song_id}",
+    {
+      comment_body: req.body.comment_body,
+      user_id: Number(req.body.user_id),
+      song_id: Number(req.body.song_id)
+    }
+  ).then(() => {
+    res
+      .status(200)
+      .json({
+        status: "Success",
+        message: "Updated comment"
+      })
+      .catch(err => next(err));
+  });
+};
 
 const deleteComment = (req, res, next) => {
   let id = Number(req.params.id);
@@ -59,8 +76,8 @@ const deleteComment = (req, res, next) => {
 
 module.exports = {
   getAllComments,
-  // getAllCommentsForSong,
+  getAllCommentsForSong,
   createComment,
-  // updateComment,
+  updateComment,
   deleteComment
 };

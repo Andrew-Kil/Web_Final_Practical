@@ -141,15 +141,13 @@ export default class Profile extends Component {
         user_id: 1,
         genre_id: selectedGenre
       })
-      .then(this.setState({ message: " Posted!" }))
+      .then(this.setState({ message: " POSTED!" }))
       .then(this.getSongs)
       .catch(err => console.log(err));
   };
 
   render() {
-    const { posted, favorites, songs, allSongs, userFavorites } = this.state;
-
-    console.log(this.state);
+    const { posted, favorites, allSongs, userFavorites } = this.state;
 
     return (
       <div id="container">
@@ -179,9 +177,9 @@ export default class Profile extends Component {
           <div id="post-song">
             <form onSubmit={this.postSong} id="post-song-form">
               <h3>Add New Song</h3>
-              <span className="ubuntu-font" id="message">
-                {this.state.message ? this.state.message : " "}
-              </span>
+              <div className="ubuntu-font" id="message">
+                {this.state.message ? this.state.message : "Enter info"}
+              </div>
               <label>
                 <input
                   placeholder="Title"
@@ -268,9 +266,7 @@ export default class Profile extends Component {
                               ? "Unfavorite"
                               : "Favorite"}
                           </button>
-                        ) : (
-                          <button>Hi</button>
-                        )}
+                        ) : null}
                       </div>
                     </div>
 
@@ -380,6 +376,22 @@ export default class Profile extends Component {
                       </div>
                     </div>
 
+                    <div id="comments-container">
+                      {userFavorite.comments
+                        ? userFavorite.comments.map((comment, i) => {
+                            return (
+                              <div key={i} id="comment-container">
+                                <span id="comment-text">
+                                  "{comment.comment_body}"
+                                </span>
+                                <NavLink to={`/profile/${comment.user_id}`}>
+                                  User: {comment.user_id}
+                                </NavLink>
+                              </div>
+                            );
+                          })
+                        : null}
+                    </div>
                     <div id="add-comment-form">
                       <form
                         onSubmit={this.handleComment}
@@ -391,10 +403,11 @@ export default class Profile extends Component {
                           name="comment_body"
                           id="comment-input-field"
                         />
-                        <button type="submit">Add Comment</button>
+                        <button type="submit" id="add-comment-button">
+                          Add Comment
+                        </button>
                       </form>
                     </div>
-
                     <br />
                     <br />
                   </span>
@@ -406,18 +419,3 @@ export default class Profile extends Component {
     );
   }
 }
-
-/* <div id="comments-container">
-              {userFavorite.comments.map((comment, i) => {
-                        return (
-                          <div key={i} id="comment-container">
-                            <span id="comment-text">
-                              "{comment.comment_body}"
-                            </span>
-                            <NavLink to={`/profile/${comment.user_id}`}>
-                              User: {comment.user_id}
-                            </NavLink>
-                          </div>
-                        );
-                      })}
-                    </div> */

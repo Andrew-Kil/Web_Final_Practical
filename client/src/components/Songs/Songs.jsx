@@ -21,9 +21,8 @@ export default class Songs extends Component {
 
   // identifyUser = userID => {
   //   this.state.users.forEach(user => {
-  //     if (userID === user.id) {
-  //       console.log("hurray", user.username);
-  //       ID = user.username;
+  //     if (user.id === userID) {
+  //       return user.username;
   //     }
   //   });
   // };
@@ -36,10 +35,6 @@ export default class Songs extends Component {
       })
       .catch(err => console.log(err));
   };
-
-  // getUser = userID => {
-  //   axios.get(`/songs/${userID}`).catch(err => console.log(err));
-  // };
 
   getUsers = () => {
     axios
@@ -55,7 +50,6 @@ export default class Songs extends Component {
       this.setState({ favorites: res.data.data[0].favorites });
     });
   };
-  // The reason for this axios call is because I am trying to figure out how to implement favorites. My logic is that since we are always logged in as our sample user, we only really need that users favorites. The next step is how to tackle the favorites button which should conditionally render either "favorite" or "unfavorite"
 
   handleChange = e => {
     this.setState({

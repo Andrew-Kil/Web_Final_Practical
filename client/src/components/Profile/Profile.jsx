@@ -100,8 +100,7 @@ export default class Profile extends Component {
       .post("/songs", {
         title: title,
         img_url: img_url,
-        user_id: "1",
-        // since we will always be logged in as the first user, I specified that the poster will always be that user
+        user_id: 1,
         genre_id: selectedGenre
       })
       .then(this.setState({ message: " Posted!" }))

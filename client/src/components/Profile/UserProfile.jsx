@@ -22,24 +22,47 @@ export default class UserProfile extends Component {
       .catch(err => console.log(err));
 
     axios
+      .get(`/favorites/user/${this.props.match.params.id}`)
+      .then(res => {
+        this.setState({
+          userFavorites: res.data.data
+        });
+      })
+      .catch(err => console.log(err));
+
+    this.getUserSongs();
+  }
+
+  getUserSongs = () => {
+    axios
       .get(`/songs/user/${this.props.match.params.id}`)
       .then(res => {
         this.setState({ songs: res.data.data });
       })
       .catch(err => console.log(err));
-
-    axios
-      .get(`/favorites/user/${this.props.match.params.id}`)
-      .then(res => {
-        this.setState({ userFavorites: res.data.data });
-      })
-      .catch(err => console.log(err));
-  }
+  };
 
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
+  };
+
+  handleComment = e => {
+    const { comment_body } = this.state;
+
+    e.preventDefault();
+
+    axios
+      .post("/comments", {
+        comment_body: comment_body,
+        user_id: 1,
+        song_id: e.target.name
+      })
+      .then(this.getUserSongs)
+      .catch(err => console.log(err));
+
+    e.target.reset();
   };
 
   selectedButton = e => {
@@ -132,14 +155,16 @@ export default class UserProfile extends Component {
                     </div>
 
                     <div id="add-comment-form">
-                      <form onSubmit={this.handleComment}>
+                      <form onSubmit={this.handleComment} name={song.id}>
                         <input
                           type="text"
                           onChange={this.handleChange}
                           name="comment_body"
                           id="comment-input-field"
                         />
-                        <button type="submit">Add Comment</button>
+                        <button type="submit" id="add-comment-button">
+                          Add Comment
+                        </button>
                       </form>
                     </div>
 

@@ -211,11 +211,11 @@
   width: 150px;
   height: 150px;
   border-radius: 10px;
-  border: 6px solid black;
+  border: 6px solid #621389;
 }
 
 .img-song:hover {
-  border: 6px solid #621389;
+  border: 6px solid #00f281;
 }
 
 .favorite {

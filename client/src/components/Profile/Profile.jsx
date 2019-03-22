@@ -224,20 +224,34 @@ export default class Profile extends Component {
                       </div>
                     </div>
 
-                    <div id="comments-container">
-                      {song.comments.map((comment, i) => {
-                        return (
-                          <div key={i} id="comment-container">
-                            <span id="comment-text">
-                              "{comment.comment_body}"
-                            </span>
-                            <NavLink to={`/profile/${comment.user_id}`}>
-                              User: {comment.user_id}
-                            </NavLink>
-                          </div>
-                        );
-                      })}
-                    </div>
+                    {song.comments ? (
+                      <div id="comments-container">
+                        {song.comments.map((comment, i) => {
+                          return (
+                            <div key={i} id="comment-container">
+                              {comment ? (
+                                <>
+                                  <span id="comment-text">
+                                    "{comment.comment_body}"
+                                  </span>
+
+                                  <NavLink to={`/profile/${comment.user_id}`}>
+                                    User:{" "}
+                                    {comment.user_id ? comment.user_id : null}
+                                  </NavLink>
+                                </>
+                              ) : (
+                                <>
+                                  <span id="comment-text">
+                                    Add the first comment below!
+                                  </span>
+                                </>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : null}
 
                     <div id="add-comment-form">
                       <form onSubmit={this.handleComment} name={song.id}>

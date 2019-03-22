@@ -30,7 +30,9 @@ export default class Profile extends Component {
     axios
       .get("/songs")
       .then(res => {
-        this.setState({ allSongs: res.data.data });
+        this.setState({
+          allSongs: res.data.data
+        });
       })
       .catch(err => console.log(err));
   };
@@ -58,7 +60,7 @@ export default class Profile extends Component {
       .get("/favorites/user")
       .then(res => {
         this.setState({
-          userFavorites: res.data.data
+          favorites: res.data.data
         });
       })
       .catch(err => console.log(err));
@@ -73,6 +75,25 @@ export default class Profile extends Component {
       .catch(err => console.log(err));
   };
 
+  handleClick = e => {
+    if (e.target.value === "favorite") {
+      axios
+        .post("/favorites", {
+          user_id: 1,
+          song_id: Number(e.target.name)
+        })
+        .then(this.getSongs)
+        .then(this.getFavoritesForUser)
+        .catch(err => console.log(err));
+    } else if (e.target.value === "unfavorite") {
+      axios
+        .delete(`/favorites/${e.target.name}`)
+        .then(this.getSongs)
+        .then(this.getFavoritesForUser)
+        .catch(err => console.log(err));
+    }
+  };
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -83,10 +104,10 @@ export default class Profile extends Component {
     e.target.name === "posted-button"
       ? this.setState({
           posted: "selected",
-          favorites: ""
+          userFavorites: ""
         })
       : this.setState({
-          favorites: "selected",
+          userFavorites: "selected",
           posted: ""
         });
   };
@@ -146,7 +167,7 @@ export default class Profile extends Component {
           </button>
           <button
             id="favorites-button"
-            className={favorites}
+            className={userFavorites}
             onClick={this.selectedButton}
             name="favorites-button"
           >
@@ -220,7 +241,35 @@ export default class Profile extends Component {
                           <span id="favorites-count">{song.favorites}</span>{" "}
                           Favorites
                         </div>
-                        <button id="favorite-button">Favorite</button>
+                        <button
+                          id="favorite-button"
+                          name={song.id}
+                          value={
+                            this.state.favorites
+                              ? this.state.favorites[0].favorites.find(
+                                  favorite => favorite.title === song.title
+                                )
+                                ? "unfavorite"
+                                : "favorite"
+                              : null
+                          }
+                          className={
+                            this.state.favorites
+                              ? this.state.favorites[0].favorites.find(
+                                  favorite => favorite.title === song.title
+                                )
+                                ? "unfavorite"
+                                : "favorite"
+                              : null
+                          }
+                          onClick={this.handleClick}
+                        >
+                          {this.state.favorites.find(
+                            favorite => favorite.title === song.title
+                          )
+                            ? "Unfavorite"
+                            : "Favorite"}
+                        </button>
                       </div>
                     </div>
 
@@ -276,7 +325,7 @@ export default class Profile extends Component {
           : null}
 
         {favorites && userFavorites
-          ? userFavorites[0].favorites.map(userFavorite => {
+          ? favorites[0].favorites.map(userFavorite => {
               return (
                 <div key={userFavorite.id} id="master-container">
                   <span id="image-container">
@@ -302,7 +351,31 @@ export default class Profile extends Component {
                           </span>{" "}
                           Favorites
                         </div>
-                        <button id="favorite-button">Favorite</button>
+                        <button
+                          id="favorite-button"
+                          name={userFavorite.id}
+                          value={
+                            this.state.favorites.find(
+                              favorite => favorite.title === userFavorite.title
+                            )
+                              ? "unfavorite"
+                              : "favorite"
+                          }
+                          className={
+                            this.state.favorites.find(
+                              favorite => favorite.title === userFavorite.title
+                            )
+                              ? "unfavorite"
+                              : "favorite"
+                          }
+                          onClick={this.handleClick}
+                        >
+                          {this.state.favorites.find(
+                            favorite => favorite.title === userFavorite.title
+                          )
+                            ? "Unfavorite"
+                            : "Favorite"}
+                        </button>
                       </div>
                     </div>
 

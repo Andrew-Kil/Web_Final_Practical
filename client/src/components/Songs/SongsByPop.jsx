@@ -86,8 +86,6 @@ export default class SongsByPop extends Component {
   };
 
   render() {
-    console.log(this.state);
-
     const { songs, didSearch, search } = this.state;
 
     const filteredSongs = songs.filter(song => {

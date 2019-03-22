@@ -147,7 +147,7 @@ export default class Profile extends Component {
   };
 
   render() {
-    const { posted, favorites, allSongs, userFavorites } = this.state;
+    const { posted, favorites, songs, userFavorites } = this.state;
 
     return (
       <div id="container">
@@ -214,8 +214,8 @@ export default class Profile extends Component {
           </div>
         ) : null}
 
-        {posted && allSongs
-          ? allSongs.map(song => {
+        {posted && songs
+          ? songs.map(song => {
               return (
                 <div key={song.id} id="master-container">
                   <span id="image-container">

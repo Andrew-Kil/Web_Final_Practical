@@ -56,14 +56,14 @@ export default class SongsByPop extends Component {
           user_id: 1,
           song_id: Number(e.target.name)
         })
-        .then(() => this.getSongsByPop())
-        .then(() => this.getFavorites())
+        .then(this.getSongsByPop)
+        .then(this.getFavorites)
         .catch(err => console.log(err));
     } else if (e.target.value === "unfavorite") {
       axios
         .delete(`/favorites/${e.target.name}`)
-        .then(() => this.getSongsByPop())
-        .then(() => this.getFavorites())
+        .then(this.getSongsByPop)
+        .then(this.getFavorites)
         .catch(err => console.log(err));
     }
   };
@@ -79,7 +79,7 @@ export default class SongsByPop extends Component {
         user_id: 1,
         song_id: e.target.name
       })
-      .then(this.getSongsByPop())
+      .then(this.getSongsByPop)
       .catch(err => console.log(err));
 
     e.target.reset();

@@ -15,7 +15,7 @@ const getAllFavorites = (req, res, next) => {
 };
 
 const getAllFavoritesForSong = (req, res, next) => {
-  let songID = Number(req.params.id);
+  const songID = Number(req.params.id);
   db.any(
     "SELECT * FROM favorites JOIN songs ON favorites.song_id = songs.id WHERE songs.id = $1",
     songID
@@ -75,7 +75,7 @@ const createFavorite = (req, res, next) => {
 };
 
 const deleteFavorite = (req, res, next) => {
-  let songID = Number(req.params.id);
+  const songID = Number(req.params.id);
   db.result("DELETE FROM favorites WHERE user_id = 1 AND song_id = $1", songID)
     .then(data => {
       res.status(200).json({

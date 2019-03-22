@@ -62,7 +62,7 @@ const updateComment = (req, res, next) => {
 };
 
 const deleteComment = (req, res, next) => {
-  let id = Number(req.params.id);
+  const id = Number(req.params.id);
   db.result("DELETE FROM comments WHERE id=$1", id)
     .then(data => {
       res.status(200).json({

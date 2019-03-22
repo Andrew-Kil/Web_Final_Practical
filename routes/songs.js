@@ -4,7 +4,7 @@ var router = express.Router();
 const {
   getAllSongs,
   getAllSongsByPop,
-  //   getAllSongsForGenre,
+  getAllSongsForGenre,
   getAllSongsForUser,
   getAllSongsForOtherUser,
   getOneSong,
@@ -14,7 +14,7 @@ const {
 
 router.get("/", getAllSongs);
 router.get("/bypop", getAllSongsByPop);
-// router.get("/genre/:id", getAllSongsForGenre);
+router.get("/genre/:id", getAllSongsForGenre);
 router.get("/user/:id", getAllSongsForOtherUser);
 router.get("/user", getAllSongsForUser);
 router.get("/:id", getOneSong);

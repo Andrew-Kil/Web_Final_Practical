@@ -13,8 +13,8 @@ const getAllUsers = (req, res, next) => {
 };
 
 const getSingleUser = (req, res, next) => {
-  const userId = Number(req.params.id);
-  db.one("SELECT username FROM users WHERE id=$1", userId)
+  const userID = Number(req.params.id);
+  db.one("SELECT username FROM users WHERE id=$1", userID)
     .then(data => {
       res.status(200).json({
         status: "Success",
@@ -39,8 +39,8 @@ const createUser = (req, res, next) => {
 };
 
 const deleteUser = (req, res, next) => {
-  const userId = Number(req.params.id);
-  db.result("DELETE FROM users WHERE id=$1", userId)
+  const userID = Number(req.params.id);
+  db.result("DELETE FROM users WHERE id=$1", userID)
     .then(result => {
       res.status(200).json({
         status: "Success",

@@ -31,7 +31,7 @@ const getAllSongsByPop = (req, res, next) => {
 const getAllSongsForGenre = (req, res, next) => {
   const genreID = Number(req.params.id);
 
-  "SELECT songs.* FROM songs JOIN genres ON songs.genre_id = genres.id WHERE genre_id = $1",
+  "SELECT songs.* FROM songs JOIN genres ON songs.genre_id = genres.id WHERE genre_id = $1 ORDER BY songs.id",
     genreID
       .then(data => {
         res.status(200).json({
@@ -76,8 +76,8 @@ const getAllSongsForOtherUser = (req, res, next) => {
 };
 
 const getOneSong = (req, res, next) => {
-  const id = Number(req.params.id);
-  db.any("SELECT * FROM songs WHERE songs.id = $1", id)
+  const ID = Number(req.params.id);
+  db.any("SELECT * FROM songs WHERE songs.id = $1", ID)
     .then(data => {
       res.status(200).json({
         status: "Success",
@@ -103,8 +103,8 @@ const createSong = (req, res, next) => {
 };
 
 const deleteSong = (req, res, next) => {
-  let id = Number(req.params.id);
-  db.result("DELETE FROM songs WHERE id=$1", id)
+  let ID = Number(req.params.id);
+  db.result("DELETE FROM songs WHERE id=$1", ID)
     .then(data => {
       res.status(200).json({
         status: "Success",

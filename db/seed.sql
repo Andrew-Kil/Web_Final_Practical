@@ -199,9 +199,7 @@ VALUES
     ('great song', 1, 1),
     ('bad song', 2, 3),
     ('i listen to this when i am sad', 3, 5),
-    ('i listen to this when i am mad', 4, 2),
     ('i listen to this when i am glad', 5, 9),
-    ('i listen to this when i am bad', 6, 10),
     ('this song gives me shivers', 7, 11),
     ('this song gives me goosebumps', 8, 12),
     ('i heard this song from the radio', 9, 15),
@@ -231,6 +229,5 @@ VALUES
     ('the first time I heard this song was at the dentist', 2, 27),
     ('saw this live, it was great', 10, 28),
     ('this song always gets me pumped', 2, 29),
-    ('great music', 7, 30),
     ('great song', 2, 31),
     ('spooky song', 4, 32);

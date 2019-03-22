@@ -11,6 +11,7 @@ export default class Profile extends Component {
     title: "",
     img_url: "",
     selectedGenre: "",
+    allSongs: [],
     songs: [],
     genres: [],
     userFavorites: [],
@@ -18,13 +19,41 @@ export default class Profile extends Component {
   };
 
   componentDidMount() {
+    this.getSongs();
+    this.getUsers();
+    this.getSongsForUser();
+    this.getFavoritesForUser();
+    this.getAllGenres();
+  }
+
+  getSongs = () => {
     axios
-      .get("/genres")
+      .get("/songs")
       .then(res => {
-        this.setState({ genres: res.data.data });
+        this.setState({ allSongs: res.data.data });
       })
       .catch(err => console.log(err));
+  };
 
+  getUsers = () => {
+    axios
+      .get("/users")
+      .then(res => {
+        this.setState({ users: res.data.data });
+      })
+      .catch(err => console.log(err));
+  };
+
+  getSongsForUser = () => {
+    axios
+      .get("/songs/user")
+      .then(res => {
+        this.setState({ songs: res.data.data });
+      })
+      .catch(err => console.log(err));
+  };
+
+  getFavoritesForUser = () => {
     axios
       .get("/favorites/user")
       .then(res => {
@@ -33,26 +62,13 @@ export default class Profile extends Component {
         });
       })
       .catch(err => console.log(err));
-
-    this.getSongs();
-
-    this.getSongsByUser();
-  }
-
-  getSongs = () => {
-    axios
-      .get("/users/")
-      .then(res => {
-        this.setState({ users: res.data.data });
-      })
-      .catch(err => console.log(err));
   };
 
-  getSongsByUser = () => {
+  getAllGenres = () => {
     axios
-      .get("/songs/user")
+      .get("/genres")
       .then(res => {
-        this.setState({ songs: res.data.data });
+        this.setState({ genres: res.data.data });
       })
       .catch(err => console.log(err));
   };
@@ -89,7 +105,7 @@ export default class Profile extends Component {
         genre_id: selectedGenre
       })
       .then(this.setState({ message: " Posted!" }))
-      .then(this.getSongs())
+      .then(this.getSongs)
       .catch(err => console.log(err));
   };
 
@@ -104,7 +120,7 @@ export default class Profile extends Component {
         user_id: 1,
         song_id: e.target.name
       })
-      .then(this.getSongsByUser())
+      .then(this.getSongsForUser())
       .catch(err => console.log(err));
 
     e.target.reset();

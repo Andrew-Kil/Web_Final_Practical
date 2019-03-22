@@ -6,6 +6,7 @@
   padding-top: 15px;
   background-color: #d1d1d1;
   width: 80%;
+  height: 100%;
   min-width: 800px;
   margin: 0 auto;
 }
@@ -225,9 +226,9 @@
 }
 
 .favorite {
-  background-color: #00f281;
+  background-color: lightgreen;
 }
 
 .unfavorite {
-  background-color: #d1d1d1;
+  background-color: lightcoral;
 }

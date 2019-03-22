@@ -48,9 +48,7 @@ export default class SongsByGenre extends Component {
   };
 
   handleChange = e => {
-    // if (this.state.didSubmit) this.setState({ didSubmit: false });
     this.setState({
-      didSubmit: false,
       [e.target.name]: e.target.value
     });
   };
@@ -60,7 +58,7 @@ export default class SongsByGenre extends Component {
 
     this.setState({ didSubmit: true });
 
-    // window.location.reload();
+    e.target.reset();
   };
 
   handleClick = e => {
@@ -70,14 +68,14 @@ export default class SongsByGenre extends Component {
           user_id: 1,
           song_id: Number(e.target.name)
         })
-        .then(() => this.getSongs())
-        .then(() => this.getFavorites())
+        .then(this.getSongs)
+        .then(this.getFavorites)
         .catch(err => console.log(err));
     } else if (e.target.value === "unfavorite") {
       axios
         .delete(`/favorites/${e.target.name}`)
-        .then(() => this.getSongs())
-        .then(() => this.getFavorites())
+        .then(this.getSongs)
+        .then(this.getFavorites)
         .catch(err => console.log(err));
     }
   };
@@ -166,6 +164,13 @@ export default class SongsByGenre extends Component {
                               ? "unfavorite"
                               : "favorite"
                           }
+                          className={
+                            this.state.favorites.find(
+                              favorite => favorite.title === song.title
+                            )
+                              ? "unfavorite"
+                              : "favorite"
+                          }
                           onClick={this.handleClick}
                         >
                           {this.state.favorites.find(
@@ -225,7 +230,7 @@ export default class SongsByGenre extends Component {
                     <div id="info-box">
                       <h3 id="song-title">{song.title}</h3>
 
-                      <p>
+                      <p id="posted-by-text">
                         Posted By:{" "}
                         <NavLink to={`/profile/${song.user_id}`}>
                           {song.username}
@@ -236,7 +241,31 @@ export default class SongsByGenre extends Component {
                           <span id="favorites-count">{song.favorites}</span>{" "}
                           Favorites
                         </div>
-                        <button id="favorite-button">Favorite</button>
+                        <button
+                          id="favorite-button"
+                          name={song.id}
+                          value={
+                            this.state.favorites.find(
+                              favorite => favorite.title === song.title
+                            )
+                              ? "unfavorite"
+                              : "favorite"
+                          }
+                          className={
+                            this.state.favorites.find(
+                              favorite => favorite.title === song.title
+                            )
+                              ? "unfavorite"
+                              : "favorite"
+                          }
+                          onClick={this.handleClick}
+                        >
+                          {this.state.favorites.find(
+                            favorite => favorite.title === song.title
+                          )
+                            ? "Unfavorite"
+                            : "Favorite"}
+                        </button>
                       </div>
                     </div>
 
@@ -263,7 +292,9 @@ export default class SongsByGenre extends Component {
                           name="comment_body"
                           id="comment-input-field"
                         />
-                        <button type="submit">Add Comment</button>
+                        <button type="submit" id="add-comment-button">
+                          Add Comment
+                        </button>
                       </form>
                     </div>
                     <br />

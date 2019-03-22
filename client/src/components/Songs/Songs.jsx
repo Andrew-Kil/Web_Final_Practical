@@ -19,9 +19,9 @@ export default class Songs extends Component {
     this.getFavorites();
   }
 
-  // identifyUser = ID => {
+  // identifyUser = userID => {
   //   this.state.users.forEach(user => {
-  //     if (ID === user.id) {
+  //     if (userID === user.id) {
   //       console.log("hurray", user.username);
   //       ID = user.username;
   //     }
@@ -37,8 +37,8 @@ export default class Songs extends Component {
       .catch(err => console.log(err));
   };
 
-  // getUser = ID => {
-  //   axios.get(`/songs/${ID}`).then(res => this.setState({}));
+  // getUser = userID => {
+  //   axios.get(`/songs/${userID}`).catch(err => console.log(err));
   // };
 
   getUsers = () => {
@@ -79,14 +79,14 @@ export default class Songs extends Component {
           user_id: 1,
           song_id: Number(e.target.name)
         })
-        .then(() => this.getSongs())
-        .then(() => this.getFavorites())
+        .then(this.getSongs)
+        .then(this.getFavorites)
         .catch(err => console.log(err));
     } else if (e.target.value === "unfavorite") {
       axios
         .delete(`/favorites/${e.target.name}`)
-        .then(() => this.getSongs())
-        .then(() => this.getFavorites())
+        .then(this.getSongs)
+        .then(this.getFavorites)
         .catch(err => console.log(err));
     }
   };
@@ -102,15 +102,13 @@ export default class Songs extends Component {
         user_id: 1,
         song_id: e.target.name
       })
-      .then(this.getSongs())
+      .then(this.getSongs)
       .catch(err => console.log(err));
 
     e.target.reset();
   };
 
   render() {
-    console.log(this.state);
-
     const { songs, didSearch, search } = this.state;
 
     const filteredSongs = songs.filter(song => {

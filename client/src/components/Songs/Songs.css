@@ -76,6 +76,12 @@
   color: #621389;
 }
 
+#favorites-count {
+  color: green;
+  font-weight: bold;
+  font-size: 17px;
+}
+
 #comments-container {
   margin: 10px 10px 10px 10px;
   background-color: #d1d1d1;

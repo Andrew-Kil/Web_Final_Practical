@@ -29,9 +29,20 @@ export default class UserProfile extends Component {
         });
       })
       .catch(err => console.log(err));
-
+    this.getSongs();
     this.getUserSongs();
   }
+
+  getSongs = () => {
+    axios
+      .get("/songs")
+      .then(res => {
+        this.setState({
+          allSongs: res.data.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
   getUserSongs = () => {
     axios
@@ -40,6 +51,25 @@ export default class UserProfile extends Component {
         this.setState({ songs: res.data.data });
       })
       .catch(err => console.log(err));
+  };
+
+  handleClick = e => {
+    if (e.target.value === "favorite") {
+      axios
+        .post("/favorites", {
+          user_id: 1,
+          song_id: Number(e.target.name)
+        })
+        .then(this.getSongs)
+        .then(this.getFavoritesForUser)
+        .catch(err => console.log(err));
+    } else if (e.target.value === "unfavorite") {
+      axios
+        .delete(`/favorites/${e.target.name}`)
+        .then(this.getSongs)
+        .then(this.getFavoritesForUser)
+        .catch(err => console.log(err));
+    }
   };
 
   handleChange = e => {
@@ -135,7 +165,33 @@ export default class UserProfile extends Component {
                           <span id="favorites-count">{song.favorites}</span>{" "}
                           Favorites
                         </div>
-                        <button id="favorite-button">Favorite</button>
+                        {this.state.userFavorites.length ? (
+                          <button
+                            id="favorite-button"
+                            name={song.id}
+                            value={
+                              this.state.userFavorites[0].favorites.find(
+                                favorite => favorite.title === song.title
+                              )
+                                ? "unfavorite"
+                                : "favorite"
+                            }
+                            className={
+                              this.state.userFavorites[0].favorites.find(
+                                favorite => favorite.title === song.title
+                              )
+                                ? "unfavorite"
+                                : "favorite"
+                            }
+                            onClick={this.handleClick}
+                          >
+                            {this.state.userFavorites[0].favorites.find(
+                              favorite => favorite.title === song.title
+                            )
+                              ? "Unfavorite"
+                              : "Favorite"}
+                          </button>
+                        ) : null}
                       </div>
                     </div>
 

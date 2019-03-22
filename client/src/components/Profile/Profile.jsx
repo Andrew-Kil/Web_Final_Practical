@@ -111,7 +111,7 @@ export default class Profile extends Component {
         user_id: 1,
         song_id: e.target.name
       })
-      .then(this.getSongs())
+      .then(this.getSongs)
       .catch(err => console.log(err));
 
     e.target.reset();

@@ -19,8 +19,8 @@ export default class Profile extends Component {
   };
 
   componentDidMount() {
-    this.getSongs();
     this.getUsers();
+    this.getSongs();
     this.getSongsForUser();
     this.getFavoritesForUser();
     this.getAllGenres();
@@ -60,7 +60,7 @@ export default class Profile extends Component {
       .get("/favorites/user")
       .then(res => {
         this.setState({
-          favorites: res.data.data
+          userFavorites: res.data.data
         });
       })
       .catch(err => console.log(err));
@@ -100,14 +100,31 @@ export default class Profile extends Component {
     });
   };
 
+  handleComment = e => {
+    const { comment_body } = this.state;
+
+    e.preventDefault();
+
+    axios
+      .post("/comments", {
+        comment_body: comment_body,
+        user_id: 1,
+        song_id: e.target.name
+      })
+      .then(this.getSongs())
+      .catch(err => console.log(err));
+
+    e.target.reset();
+  };
+
   selectedButton = e => {
     e.target.name === "posted-button"
       ? this.setState({
           posted: "selected",
-          userFavorites: ""
+          favorites: ""
         })
       : this.setState({
-          userFavorites: "selected",
+          favorites: "selected",
           posted: ""
         });
   };
@@ -129,25 +146,8 @@ export default class Profile extends Component {
       .catch(err => console.log(err));
   };
 
-  handleComment = e => {
-    const { comment_body } = this.state;
-
-    e.preventDefault();
-
-    axios
-      .post("/comments", {
-        comment_body: comment_body,
-        user_id: 1,
-        song_id: e.target.name
-      })
-      .then(this.getSongsForUser())
-      .catch(err => console.log(err));
-
-    e.target.reset();
-  };
-
   render() {
-    const { posted, favorites, songs, userFavorites } = this.state;
+    const { posted, favorites, songs, allSongs, userFavorites } = this.state;
 
     console.log(this.state);
 
@@ -167,7 +167,7 @@ export default class Profile extends Component {
           </button>
           <button
             id="favorites-button"
-            className={userFavorites}
+            className={favorites}
             onClick={this.selectedButton}
             name="favorites-button"
           >
@@ -216,8 +216,8 @@ export default class Profile extends Component {
           </div>
         ) : null}
 
-        {posted && songs
-          ? songs.map(song => {
+        {posted && allSongs
+          ? allSongs.map(song => {
               return (
                 <div key={song.id} id="master-container">
                   <span id="image-container">
@@ -241,35 +241,36 @@ export default class Profile extends Component {
                           <span id="favorites-count">{song.favorites}</span>{" "}
                           Favorites
                         </div>
-                        <button
-                          id="favorite-button"
-                          name={song.id}
-                          value={
-                            this.state.favorites
-                              ? this.state.favorites[0].favorites.find(
-                                  favorite => favorite.title === song.title
-                                )
+
+                        {this.state.userFavorites.length ? (
+                          <button
+                            id="favorite-button"
+                            name={song.id}
+                            value={
+                              this.state.userFavorites[0].favorites.find(
+                                favorite => favorite.title === song.title
+                              )
                                 ? "unfavorite"
                                 : "favorite"
-                              : null
-                          }
-                          className={
-                            this.state.favorites
-                              ? this.state.favorites[0].favorites.find(
-                                  favorite => favorite.title === song.title
-                                )
+                            }
+                            className={
+                              this.state.userFavorites[0].favorites.find(
+                                favorite => favorite.title === song.title
+                              )
                                 ? "unfavorite"
                                 : "favorite"
-                              : null
-                          }
-                          onClick={this.handleClick}
-                        >
-                          {this.state.favorites.find(
-                            favorite => favorite.title === song.title
-                          )
-                            ? "Unfavorite"
-                            : "Favorite"}
-                        </button>
+                            }
+                            onClick={this.handleClick}
+                          >
+                            {this.state.userFavorites[0].favorites.find(
+                              favorite => favorite.title === song.title
+                            )
+                              ? "Unfavorite"
+                              : "Favorite"}
+                          </button>
+                        ) : (
+                          <button>Hi</button>
+                        )}
                       </div>
                     </div>
 
@@ -324,8 +325,8 @@ export default class Profile extends Component {
             })
           : null}
 
-        {favorites && userFavorites
-          ? favorites[0].favorites.map(userFavorite => {
+        {userFavorites && favorites
+          ? userFavorites[0].favorites.map(userFavorite => {
               return (
                 <div key={userFavorite.id} id="master-container">
                   <span id="image-container">
@@ -355,14 +356,14 @@ export default class Profile extends Component {
                           id="favorite-button"
                           name={userFavorite.id}
                           value={
-                            this.state.favorites.find(
+                            this.state.userFavorites.find(
                               favorite => favorite.title === userFavorite.title
                             )
                               ? "unfavorite"
                               : "favorite"
                           }
                           className={
-                            this.state.favorites.find(
+                            this.state.userFavorites.find(
                               favorite => favorite.title === userFavorite.title
                             )
                               ? "unfavorite"
@@ -370,7 +371,7 @@ export default class Profile extends Component {
                           }
                           onClick={this.handleClick}
                         >
-                          {this.state.favorites.find(
+                          {this.state.userFavorites.find(
                             favorite => favorite.title === userFavorite.title
                           )
                             ? "Unfavorite"
@@ -378,21 +379,6 @@ export default class Profile extends Component {
                         </button>
                       </div>
                     </div>
-
-                    {/* <div id="comments-container">
-              {userFavorite.comments.map((comment, i) => {
-                        return (
-                          <div key={i} id="comment-container">
-                            <span id="comment-text">
-                              "{comment.comment_body}"
-                            </span>
-                            <NavLink to={`/profile/${comment.user_id}`}>
-                              User: {comment.user_id}
-                            </NavLink>
-                          </div>
-                        );
-                      })}
-                    </div> */}
 
                     <div id="add-comment-form">
                       <form
@@ -420,3 +406,18 @@ export default class Profile extends Component {
     );
   }
 }
+
+/* <div id="comments-container">
+              {userFavorite.comments.map((comment, i) => {
+                        return (
+                          <div key={i} id="comment-container">
+                            <span id="comment-text">
+                              "{comment.comment_body}"
+                            </span>
+                            <NavLink to={`/profile/${comment.user_id}`}>
+                              User: {comment.user_id}
+                            </NavLink>
+                          </div>
+                        );
+                      })}
+                    </div> */

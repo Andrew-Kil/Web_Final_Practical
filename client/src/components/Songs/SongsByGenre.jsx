@@ -48,13 +48,9 @@ export default class SongsByGenre extends Component {
   };
 
   handleChange = e => {
-    if (this.state.didSubmit) {
-      this.setState({
-        didSubmit: false
-      });
-    }
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      didSubmit: false
     });
   };
 
@@ -62,8 +58,6 @@ export default class SongsByGenre extends Component {
     e.preventDefault();
 
     this.setState({ didSubmit: true });
-
-    e.target.reset();
   };
 
   handleClick = e => {

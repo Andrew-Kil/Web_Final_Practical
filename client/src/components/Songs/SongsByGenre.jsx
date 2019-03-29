@@ -103,6 +103,8 @@ export default class SongsByGenre extends Component {
       return song.genre_name === selectedGenre;
     });
 
+    //Shouldn't this read: Search by Genre, or Select Genre?
+
     return (
       <div id="container">
         <h1 className="ubuntu-font">BY GENRE</h1>

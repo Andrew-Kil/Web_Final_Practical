@@ -89,7 +89,7 @@ export default class Songs extends Component {
     const { comment_body } = this.state;
 
     e.preventDefault();
-
+    //So there's a couple of issues here. We're hard-coding the song here, so even when I post a comment on a different song it's being added to the first one. Also, we are firing our AJAX request here and our request in getSongs at the same time, which doesn't ensure that our song's comment section will update - maybe put getSongs in a .then clause? Finally, our comments are rendering with user IDs rather than usernames. They should render with usernames.
     axios
       .post("/comments", {
         comment_body: comment_body,
@@ -102,6 +102,9 @@ export default class Songs extends Component {
     e.target.reset();
   };
 
+
+  // We can (and probably should!) modularize this whole folder a little bit more. You can farm out some of the form functionalities, for example, to separate components. It'd be *way* easier to re-enter and refactor this way!
+  // Also, I'm currently not able to favorite stuff. I assume that feature is on its way?
   render() {
     const { songs, didSearch, search } = this.state;
 

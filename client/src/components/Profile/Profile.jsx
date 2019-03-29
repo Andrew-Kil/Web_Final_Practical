@@ -146,6 +146,8 @@ export default class Profile extends Component {
       .catch(err => console.log(err));
   };
 
+  // Hmm. I'm having a little bit of trouble posting a song. When I press "enter" it adds the song to the db, but not to the dannyDeVito feed. When I click the button, nothing.
+
   render() {
     const { posted, favorites, songs, userFavorites } = this.state;
 

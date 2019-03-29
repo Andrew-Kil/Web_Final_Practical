@@ -85,6 +85,8 @@ export default class SongsByPop extends Component {
     e.target.reset();
   };
 
+  // I really like that songs seem to live-update based on favorites!
+
   render() {
     const { songs, didSearch, search } = this.state;
 
